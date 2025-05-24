@@ -37,7 +37,7 @@ export default function HomePage() {
   <div
     className="absolute inset-0 bg-cover bg-center"
     style={{
-      backgroundImage: `url('https://images.pexels.com/photos/30124670/pexels-photo-30124670.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`,
+      backgroundImage: `url('https://www.pexels.com/photo/green-forest-2739664/?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`,
     }}
   ></div>
 </div>
