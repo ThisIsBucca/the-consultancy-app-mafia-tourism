@@ -1,4 +1,5 @@
 import { TestimonialsSection } from "../components/testimonials/testimonials-section"
+import WhatsAppFloat from "../components/ui/WhatsAppFloat"
 import  Hero  from "../components/hero/Hero"
 import Link from "next/link"
 import Image from "next/image"
@@ -32,6 +33,7 @@ export default function HomePage() {
     <div>
       {/* Hero Section - Inline Component */}
        <Hero/>
+       <WhatsAppFloat/>
 
       {/* Features Section */}
       <section className="py-16 bg-white">
