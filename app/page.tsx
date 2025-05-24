@@ -32,15 +32,16 @@ export default function HomePage() {
       {/* Hero Section - Inline Component */}
       <div className="relative min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
        
- {/* Background Pattern */}
+{/* Background Pattern */}
 <div className="absolute inset-0 ">
   <div
     className="absolute inset-0 bg-cover bg-center"
     style={{
-      backgroundImage: `url('https://www.pexels.com/photo/green-forest-2739664/?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`,
+      backgroundImage: `url('https://images.pexels.com/photos/2739664/pexels-photo-2739664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`,
     }}
   ></div>
 </div>
+
 
 
         <div className="relative z-10 text-center max-w-5xl mx-auto px-4 py-20">
