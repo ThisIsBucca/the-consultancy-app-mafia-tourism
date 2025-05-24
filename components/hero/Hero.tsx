@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
 
 const bgImages = [
   "https://images.pexels.com/photos/2739664/pexels-photo-2739664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
@@ -14,39 +15,42 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % bgImages.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="relative h-[100dvh] overflow-hidden flex items-center justify-center">
       {/* Background Images Carousel */}
-      {bgImages.map((url, idx) => (
-        <div
-          key={idx}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out ${
-            idx === current ? "opacity-100 z-0" : "opacity-0 z-0"
-          }`}
-          style={{ backgroundImage: `url(${url})` }}
-        ></div>
-      ))}
+      <div className="absolute inset-0 w-full h-full z-0">
+        {bgImages.map((url, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+              idx === current ? "opacity-100" : "opacity-0"
+            }`}
+            style={{
+              backgroundImage: `url(${url})`,
+              transition: "opacity 1s ease-in-out",
+            }}
+          />
+        ))}
+      </div>
 
       {/* White Overlay */}
-      <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-blur-sm z-10"></div>
+      <div className="absolute inset-0 bg-white bg-opacity-30 backdrop-blur-sm z-10 transition-all duration-500" />
 
       {/* Hero Content */}
       <div className="relative z-20 text-center max-w-5xl mx-auto px-4 py-20">
-        <div className="mb-6">
-          <span className="text-white font-medium text-lg tracking-wide uppercase font-montserrat drop-shadow-md">
-            Welcome to Paradise
-          </span>
+        <div className="mb-6 flex justify-center">
+          <Crown className="text-yellow-500 w-10 h-10 drop-shadow-md" />
         </div>
 
         <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-gray-900 mb-6 leading-tight drop-shadow-sm">
           Mafia Island Adventures
         </h1>
 
-        <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
+        <div className="w-24 h-1 bg-accent mx-auto mb-6" />
 
         <div className="bg-white bg-opacity-60 backdrop-blur-sm rounded-xl p-6 max-w-3xl mx-auto shadow-md mb-10">
           <p className="text-xl md:text-2xl text-gray-800 leading-relaxed font-inter">
