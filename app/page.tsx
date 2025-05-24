@@ -31,9 +31,9 @@ export default function HomePage() {
     <div>
       {/* Hero Section - Inline Component */}
       <div className="relative min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-        {/* Background Pattern */}
+       
  {/* Background Pattern */}
-<div className="absolute inset-0 opacity-5">
+<div className="absolute inset-0 ">
   <div
     className="absolute inset-0 bg-cover bg-center"
     style={{
