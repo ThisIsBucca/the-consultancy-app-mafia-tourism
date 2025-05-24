@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors from design */
+  --primary: 148 76% 39%; /* #0B6E4F */
+  --primary-light: 161 63% 36%; /* #12A67A */
+  --primary-dark: 149 79% 33%; /* #095C42 */
+
+  --secondary: 29 100% 63%; /* #FF8C42 */
+  --secondary-light: 29 100% 71%; /* #FFA96E */
+  --secondary-dark: 29 72% 55%; /* #E67A30 */
+
+  --accent: 46 70% 57%; /* #E2C044 */
+  --accent-light: 46 84% 70%; /* #F0D676 */
+  --accent-dark: 46 65% 48%; /* #C9A82C */
+
+  /* ShadCN UI variables */
+  --background: 0 0% 98%;
+  --foreground: 220 14% 20%; /* #333333 */
+
+  --muted: 60 5% 96%;
+  --muted-foreground: 25 5% 45%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 14% 20%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 220 14% 20%;
+
+  --border: 20 6% 90%;
+  --input: 20 6% 90%;
+
+  --primary-foreground: 210 40% 98%;
+
+  --secondary-foreground: 24 10% 10%;
+
+  --accent-foreground: 24 10% 10%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 60 9% 98%;
+
+  --ring: var(--primary);
+
+  --radius: 0.5rem;
+
+  /* Font variables */
+  --font-inter: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-montserrat: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-playfair: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.dark {
+  --background: 240 10% 4%;
+  --foreground: 0 0% 98%;
+
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 65%;
+
+  --popover: 240 10% 4%;
+  --popover-foreground: 0 0% 98%;
+
+  --card: 240 10% 4%;
+  --card-foreground: 0 0% 98%;
+
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+
+  --primary-foreground: 210 40% 98%;
+
+  --secondary-foreground: 0 0% 98%;
+
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 0 0% 98%;
+
+  --ring: var(--primary);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-inter);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+    font-family: var(--font-montserrat);
+  }
+
+  h1 {
+    @apply text-4xl md:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto max-w-6xl px-4;
+  }
+
+  .section-title {
+    @apply text-center;
+  }
+
+  .section-title span {
+    @apply text-primary font-medium;
+  }
+
+  .section-title h2 {
+    @apply font-bold text-3xl md:text-4xl mt-3 mb-6;
+    font-family: var(--font-montserrat);
+  }
+
+  .section-divider {
+    @apply w-20 h-1 bg-accent mx-auto;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary/90 text-secondary-foreground;
+  }
+
+  .btn-accent {
+    @apply bg-accent hover:bg-accent/90 text-accent-foreground;
+  }
+
+  .font-inter {
+    font-family: var(--font-inter);
+  }
+
+  .font-montserrat {
+    font-family: var(--font-montserrat);
+  }
+
+  .font-playfair {
+    font-family: var(--font-playfair);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
