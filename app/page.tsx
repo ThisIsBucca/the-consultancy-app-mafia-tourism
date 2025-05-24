@@ -1,5 +1,5 @@
 import { TestimonialsSection } from "../components/testimonials/testimonials-section"
-import { TestimonialsSection } from "../components/hero/Hero"
+import { Hero } from "../components/hero/Hero"
 import Link from "next/link"
 import Image from "next/image"
 import { Waves, Users, Camera, Star } from "lucide-react"
