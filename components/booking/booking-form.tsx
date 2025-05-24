@@ -70,12 +70,12 @@ export const BookingForm = ({ tourId, tourTitle, tourPrice }: BookingFormProps) 
     <div className="bg-white rounded-xl shadow-lg p-6">
       <h3 className="text-2xl font-bold text-gray-900 mb-6">Book This Tour</h3>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <div className="bg-primary/10 border border-blue-200 rounded-lg p-4 mb-6">
         <div className="flex items-center">
-          <Info className="h-5 w-5 text-blue-600 mr-2" />
+          <Info className="h-5 w-5 text-primary mr-2" />
           <div>
-            <h4 className="text-blue-800 font-semibold">Demo Mode</h4>
-            <p className="text-blue-700 text-sm">
+            <h4 className="text-primary font-semibold">Demo Mode</h4>
+            <p className="text-primary text-sm">
               This is a demonstration. Bookings will be logged to the browser console.
             </p>
           </div>
@@ -171,7 +171,7 @@ export const BookingForm = ({ tourId, tourTitle, tourPrice }: BookingFormProps) 
         <div className="bg-gray-50 rounded-lg p-4">
           <div className="flex justify-between items-center text-lg font-semibold">
             <span>Total Estimated Cost:</span>
-            <span className="text-blue-600">${tourPrice} per person</span>
+            <span className="text-primary">${tourPrice} per person</span>
           </div>
           <p className="text-sm text-gray-600 mt-2">
             Final pricing will be confirmed based on your specific requirements and travel dates.
@@ -181,7 +181,7 @@ export const BookingForm = ({ tourId, tourTitle, tourPrice }: BookingFormProps) 
         <button
           type="submit"
           disabled={createBooking.isPending}
-          className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {createBooking.isPending ? "Submitting..." : "Submit Booking Request"}
         </button>

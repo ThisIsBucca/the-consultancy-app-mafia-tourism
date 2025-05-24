@@ -9,17 +9,17 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <MapPin className="h-8 w-8 text-blue-400" />
-              <span className="font-bold text-xl">Mafia Island Tours</span>
+              <MapPin className="h-8 w-8 text-primary" />
+              <span className="font-bold text-xl">Mafia Island Adventures</span>
             </div>
             <p className="text-gray-300 mb-4">
               Discover Tanzania's hidden paradise with pristine coral reefs, whale sharks, and authentic cultural
               experiences in the Indian Ocean.
             </p>
             <div className="flex space-x-4">
-              <Facebook className="h-6 w-6 text-gray-400 hover:text-blue-400 cursor-pointer" />
-              <Instagram className="h-6 w-6 text-gray-400 hover:text-pink-400 cursor-pointer" />
-              <Twitter className="h-6 w-6 text-gray-400 hover:text-blue-400 cursor-pointer" />
+              <Facebook className="h-6 w-6 text-primary hover:text-primary cursor-pointer" />
+              <Instagram className="h-6 w-6 text-primary hover:text-pink-400 cursor-pointer" />
+              <Twitter className="h-6 w-6 text-primary hover:text-primary cursor-pointer" />
             </div>
           </div>
 
@@ -55,15 +55,19 @@ export const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-blue-400" />
-                <span className="text-gray-300">+255 123 456 789</span>
+                <Phone className="h-4 w-4 text-primary" />
+                <span className="text-gray-300">+255 785 696 021</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-blue-400" />
+                <Phone className="h-4 w-4 text-primary" />
+                <span className="text-gray-300">+255 776 986 840</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="h-4 w-4 text-primary" />
                 <span className="text-gray-300">info@mafiaislandtours.com</span>
               </div>
               <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-blue-400" />
+                <MapPin className="h-4 w-4 text-primary" />
                 <span className="text-gray-300">Kilindoni, Mafia Island, Tanzania</span>
               </div>
             </div>
@@ -71,7 +75,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">© {new Date().getFullYear()} Mafia Island Tours. All rights reserved.</p>
+          <p className="text-gray-400">© {new Date().getFullYear()} Mafia Island Adventures. All rights reserved.</p>
         </div>
       </div>
     </footer>

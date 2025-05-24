@@ -33,7 +33,7 @@ export default function GalleryPage() {
       category: "Marine Life",
     },
     {
-      src: "https://images.unsplash.com/photo-1520637836862-4d197d17c35a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       alt: "Mangrove forest aerial view",
       category: "Nature",
     },
@@ -153,7 +153,7 @@ export default function GalleryPage() {
       {/* WhatsApp Float Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <a
-          href="https://wa.me/255123456789"
+          href="https://wa.me/255776986840"
           target="_blank"
           rel="noopener noreferrer"
           className="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl transform hover:scale-110"

@@ -84,7 +84,7 @@ export default function HomePage() {
         {/* WhatsApp Float Button */}
         <div className="fixed bottom-6 right-6 z-50">
           <a
-            href="https://wa.me/255123456789"
+            href="https://wa.me/255776986840"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl transform hover:scale-110"
@@ -163,7 +163,7 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-montserrat">
             Ready for Your Mafia Island Adventure?
           </h2>
-          <p className="text-xl text-primary-light mb-8 max-w-3xl mx-auto font-inter">
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto font-inter">
             Join us for an unforgettable journey to one of the world's most pristine marine environments. Book your tour
             today and create memories that will last a lifetime.
           </p>
