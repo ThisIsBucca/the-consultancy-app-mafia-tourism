@@ -65,10 +65,17 @@ export default function HomePage() {
           <div className="w-24 h-1 bg-accent mx-auto mb-8"></div>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed font-inter">
-            Discover Tanzania's hidden paradise with pristine coral reefs, whale sharks, and authentic cultural
-            experiences in the Indian Ocean
-          </p>
+          <div className="relative z-20 px-4">
+  {/* Text Background */}
+  <div className="absolute inset-0 bg-white bg-opacity-60 backdrop-blur-sm rounded-xl z-[-1]"></div>
+
+  {/* Description */}
+  <p className="text-xl md:text-2xl text-gray-800 mb-12 max-w-3xl mx-auto leading-relaxed font-inter">
+    Discover Tanzania's hidden paradise with pristine coral reefs, whale sharks, and authentic cultural
+    experiences in the Indian Ocean
+  </p>
+</div>
+
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
