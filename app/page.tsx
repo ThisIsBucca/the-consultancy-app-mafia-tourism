@@ -32,15 +32,19 @@ export default function HomePage() {
       {/* Hero Section - Inline Component */}
       <div className="relative min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
        
-{/* Background Pattern */}
-<div className="absolute inset-0 ">
+<div className="absolute inset-0">
+  {/* Background Image */}
   <div
-    className="absolute inset-0 bg-cover bg-center"
+    className="absolute inset-0 bg-cover bg-center z-0"
     style={{
       backgroundImage: `url('https://images.pexels.com/photos/2739664/pexels-photo-2739664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`,
     }}
   ></div>
+
+  {/* White Overlay */}
+  <div className="absolute inset-0 bg-white bg-opacity-30 z-10"></div>
 </div>
+
 
 
 
