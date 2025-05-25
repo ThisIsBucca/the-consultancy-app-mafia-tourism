@@ -54,8 +54,7 @@ export default function Hero() {
 
         <div className="bg-white bg-opacity-60 backdrop-blur-sm rounded-xl p-6 max-w-3xl mx-auto shadow-md mb-10">
           <p className="text-xl md:text-2xl text-gray-800 leading-relaxed font-inter">
-            Discover Tanzania's hidden paradise with pristine coral reefs, whale sharks, and authentic cultural
-            experiences in the Indian Ocean.
+          Mafia Island awaits — dive into coral beauty, swim with whale sharks, and feel the culture
           </p>
         </div>
 
