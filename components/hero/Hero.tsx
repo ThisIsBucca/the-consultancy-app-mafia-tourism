@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
 
 const bgImages = [
-  "https://images.pexels.com/photos/2739664/pexels-photo-2739664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
-  "https://images.pexels.com/photos/30124670/pexels-photo-30124670.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
-  "https://images.pexels.com/photos/3120163/pexels-photo-3120163.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
+  "https://images.pexels.com/photos/1031200/pexels-photo-1031200.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
+  "https://images.pexels.com/photos/3990823/pexels-photo-3990823.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
+  "https://images.pexels.com/photos/3990827/pexels-photo-3990827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
 ];
 
 export default function Hero() {
