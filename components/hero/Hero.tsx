@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
 
 const bgImages = [
-  "/beach1.jpg",
+  "/sunsetcruise2.jpg",
   "/kasa.jpg",
-  "/coralreef1.jpg",
+  "/whaleshark-blue-3.jpg",
 ];
 
 export default function Hero() {
@@ -73,13 +73,13 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/tours"
-            className="bg-primary text-white px-10 py-4 rounded-full text-xl font-[IslandMoments,cursive] shadow-lg hover:bg-accent hover:text-white hover:scale-105 transition-all duration-300 border-2 border-primary/20"
+            className="bg-primary text-white px-10 py-4 rounded-full text-xl font-inter shadow-lg hover:bg-accent hover:text-white hover:scale-105 transition-all duration-300 border-2 border-primary/20"
           >
             Explore Tours
           </Link>
           <Link
             href="/contact"
-            className="bg-white text-primary px-10 py-4 rounded-full text-xl font-[IslandMoments,cursive] shadow-lg border-2 border-primary/20 hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
+            className="bg-white text-primary px-10 py-4 rounded-full text-xl font-inter shadow-lg border-2 border-primary/20 hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
           >
             Contact Us
           </Link>
