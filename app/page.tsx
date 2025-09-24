@@ -84,7 +84,7 @@ export default function HomePage() {
             </div>
             <div className="relative h-96 rounded-xl overflow-hidden">
               <Image
-                src="https://images.pexels.com/photos/1031200/pexels-photo-1031200.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920"
+                src="/lagoon1.jpg"
                 alt="Aerial photo of blue water and green trees by Pok Rie"
                 fill
                 className="object-cover"
