@@ -56,7 +56,7 @@ export default function GalleryPage() {
       : 'Other',
   }));
 
-  const categories = ["All", "Marine Life", "Coral Reefs", "Culture", "Beaches", "Nature", "Other"]
+  const categories = ["All", "Marine Life", "Coral Reefs", "Culture", "Beaches", "Nature"]
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [zoomedImage, setZoomedImage] = useState<null | typeof images[0]>(null);
   const [lastTap, setLastTap] = useState<number>(0);
@@ -209,7 +209,7 @@ export default function GalleryPage() {
       </div>
 
       <AnimatePresence>
-        {zoomedImage && (
+        {!isTouch && zoomedImage && (
           <motion.div
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90"
             initial={{ opacity: 0 }}
