@@ -1,58 +1,86 @@
 "use client";
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function GalleryPage() {
-  const images = [
-    {
-      src: "/whaleshark-blue-1.jpg",
-      alt: "Whale shark swimming in blue water",
-      category: "Marine Life",
-    },
-    {
-      src: "/coralreef1.jpg",
-      alt: "Colorful coral reef with tropical fish",
-      category: "Coral Reefs",
-    },
-    {
-      src: "/sunsetcruise1.jpg",
-      alt: "Traditional dhow boat at sunset",
-      category: "Culture",
-    },
-    {
-      src: "/beach1.jpg",
-      alt: "Pristine white sand beach",
-      category: "Beaches",
-    },
-    {
-      src: "/whaleshark-greenblue-1.jpg",
-      alt: "Whale shark in green-blue water",
-      category: "Marine Life",
-    },
-    {
-      src: "/coralreef2.jpg",
-      alt: "Coral reef closeup",
-      category: "Coral Reefs",
-    },
-    {
-      src: "/lagoon1.jpg",
-      alt: "Lagoon aerial view",
-      category: "Nature",
-    },
-    {
-      src: "/sunsetcruise2.jpg",
-      alt: "Sunset cruise on Mafia Island",
-      category: "Culture",
-    },
-    {
-      src: "/beach2.jpg",
-      alt: "Secluded beach",
-      category: "Beaches",
-    },
-  ]
+  // Dynamically get all images in public except placeholders
+  const publicImages = [
+    "beach1.jpg", "beach2.jpg", "coralreef1.jpg", "coralreef2.jpg", "coralreef3.jpg", "coralreefsvibe2.jpg", "cutecoralreef.jpg", "kasa.jpg", "lagoon1.jpg", "sunsetcruise2.jpg", "whaleface.jpg", "whaleshark-blue-1.jpg", "whaleshark-blue-2.jpg", "whaleshark-blue-3.jpg", "whaleshark-blue-4.jpg", "whaleshark-blue-5.jpg", "whaleshark-greenblue-1.jpg", "whaleshark-greenblue-2.jpg", "whaleshark-greenblue-3.jpg", "whaleshark-greenblue-4.jpg", "whaleshark-greenblue-5.jpg", "whalesharkvibe1.jpg", "whalevibe2.jpg", "whalevibe3.jpg", "whalevibe4.jpg", "whalevibe5.jpg"
+  ];
 
-  const categories = ["All", "Marine Life", "Coral Reefs", "Culture", "Beaches", "Nature"]
+  // Unique descriptions for each image
+  const imageDescriptions: Record<string, string> = {
+    "beach1.jpg": "A pristine white sand beach with turquoise waters, perfect for relaxation.",
+    "beach2.jpg": "A secluded beach surrounded by lush greenery and gentle waves.",
+    "coralreef1.jpg": "A vibrant coral reef teeming with tropical fish and marine life.",
+    "coralreef2.jpg": "Closeup of colorful corals showcasing the diversity of Mafia Island's reefs.",
+    "coralreef3.jpg": "A panoramic view of coral gardens beneath crystal clear water.",
+    "coralreefsvibe2.jpg": "Coral reefs glowing in the sunlight, full of life and color.",
+    "cutecoralreef.jpg": "A playful scene of small fish darting among cute coral formations.",
+    "hero-bg.png": "A scenic background representing the spirit of Mafia Island.",
+    "kasa.jpg": "Traditional Kasa boat floating peacefully on the lagoon.",
+    "lagoon1.jpg": "Aerial view of a tranquil lagoon with blue-green water.",
+    "sunsetcruise1.jpg": "A dhow boat sailing at sunset, capturing the island's culture.",
+    "sunsetcruise2.jpg": "Tourists enjoying a sunset cruise on Mafia Island.",
+    "whaleface.jpg": "A closeup of a whale shark's face in deep blue water.",
+    "whaleshark-blue-1.jpg": "Whale shark swimming gracefully in the blue ocean.",
+    "whaleshark-blue-2.jpg": "A whale shark gliding through clear blue water.",
+    "whaleshark-blue-3.jpg": "A majestic whale shark surrounded by tiny fish.",
+    "whaleshark-blue-4.jpg": "A whale shark's silhouette in the deep blue sea.",
+    "whaleshark-blue-5.jpg": "A whale shark exploring the depths of Mafia Island's waters.",
+    "whaleshark-greenblue-1.jpg": "Whale shark in green-blue water, blending with the lagoon.",
+    "whaleshark-greenblue-2.jpg": "A whale shark swimming in vibrant green-blue waters.",
+    "whaleshark-greenblue-3.jpg": "A whale shark and snorkeler in green-blue water.",
+    "whaleshark-greenblue-4.jpg": "Whale shark cruising through the green-blue lagoon.",
+    "whaleshark-greenblue-5.jpg": "A whale shark in the emerald waters of Mafia Island.",
+    "whalesharkvibe1.jpg": "A playful whale shark enjoying the tropical vibe.",
+    "whalevibe2.jpg": "A whale shark surrounded by colorful fish.",
+    "whalevibe3.jpg": "A whale shark swimming near coral reefs.",
+    "whalevibe4.jpg": "A whale shark gliding under the sunlit surface.",
+    "whalevibe5.jpg": "A whale shark in the open ocean, full of energy."
+  };
+
+  const images = publicImages.map((filename) => ({
+    src: `/${filename}`,
+    alt: filename.replace(/[-_]/g, ' ').replace(/\.[a-zA-Z]+$/, ''),
+    description: imageDescriptions[filename] || "A beautiful scene from Mafia Island.",
+    category: filename.includes('whale') ? 'Marine Life'
+      : filename.includes('coralreef') || filename.includes('coral') ? 'Coral Reefs'
+      : filename.includes('beach') ? 'Beaches'
+      : filename.includes('lagoon') ? 'Nature'
+      : filename.includes('sunsetcruise') ? 'Culture'
+      : filename.includes('hero') ? 'Nature'
+      : filename.includes('kasa') ? 'Nature'
+      : filename.includes('face') ? 'Marine Life'
+      : 'Other',
+  }));
+
+  const categories = ["All", "Marine Life", "Coral Reefs", "Culture", "Beaches", "Nature", "Other"]
   const [selectedCategory, setSelectedCategory] = useState("All")
+  const [zoomedImage, setZoomedImage] = useState<null | typeof images[0]>(null);
+  const [lastTap, setLastTap] = useState<number>(0);
+  const [isTouch, setIsTouch] = useState(false)
+
+  // Detect touch device
+  useEffect(() => {
+    setIsTouch("ontouchstart" in window)
+  }, [])
+
+  // Handle double tap for mobile
+  function handleImageClick(image: typeof images[0]) {
+    const now = Date.now();
+    if (now - lastTap < 400) {
+      setZoomedImage(image);
+    } else {
+      setLastTap(now);
+    }
+  }
+
+  // Handle image click/double tap
+  const handleImageClickDesktop = (image) => {
+    setZoomedImage(image)
+  }
 
   const filteredImages = selectedCategory === "All"
     ? images
@@ -82,10 +110,11 @@ export default function GalleryPage() {
           {categories.map((category) => (
             <button
               key={category}
-              className={`px-6 py-3 rounded-full font-medium bg-white text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md border border-gray-200 ${selectedCategory === category ? "bg-primary text-white" : ""}`}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-sm hover:shadow-md border border-gray-200 ${selectedCategory === category ? "bg-primary text-white" : "bg-white text-gray-700 hover:bg-primary hover:text-white"}`}
               onClick={() => setSelectedCategory(category)}
+              style={{ minWidth: "120px" }}
             >
-              {category}
+              <span className="whitespace-nowrap">{category}</span>
             </button>
           ))}
         </div>
@@ -99,6 +128,9 @@ export default function GalleryPage() {
                 <div
                   key={index}
                   className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white"
+                  onClick={() => setZoomedImage(image)}
+                  onTouchEnd={() => handleImageClick(image)}
+                  style={{ cursor: "pointer" }}
                 >
                   <div className="relative h-64 md:h-80">
                     <Image
@@ -112,7 +144,7 @@ export default function GalleryPage() {
                       <span className="bg-primary px-3 py-1 rounded-full text-sm font-medium mb-2 inline-block">
                         {image.category}
                       </span>
-                      <p className="text-sm font-inter">{image.alt}</p>
+                      <p className="text-sm font-inter">{image.description}</p>
                     </div>
                   </div>
                 </div>
@@ -171,6 +203,45 @@ export default function GalleryPage() {
           </svg>
         </a>
       </div>
+
+      <AnimatePresence>
+        {zoomedImage && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setZoomedImage(null)}
+            style={{ cursor: "zoom-out" }}
+          >
+            <motion.div
+              className="relative w-full h-full flex items-center justify-center"
+              initial={{ scale: 0.95, y: 0 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={e => e.stopPropagation()}
+            >
+              <Image
+                src={zoomedImage.src}
+                alt="Zoomed image"
+                fill
+                className="object-contain w-full h-full rounded-2xl"
+                priority
+              />
+              <button
+                className="absolute top-6 right-8 bg-black/60 text-white rounded-full p-3 shadow-lg hover:bg-primary transition-colors duration-200"
+                onClick={() => setZoomedImage(null)}
+                aria-label="Close modal"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
