@@ -24,7 +24,7 @@ export const Navbar = () => {
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <Waves className="h-6 w-6 text-white" />
               </div>
-              <span className="font-montserrat font-bold text-xl text-primary">Mafia Island Adventures</span>
+              <span className="font-montserrat font-bold text-xl text-primary">Mafia Island Authentic</span>
             </Link>
           </div>
 

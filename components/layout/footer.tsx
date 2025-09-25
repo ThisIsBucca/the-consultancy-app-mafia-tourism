@@ -10,7 +10,7 @@ export const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <MapPin className="h-8 w-8 text-primary" />
-              <span className="font-bold text-xl">Mafia Island Adventures</span>
+              <span className="font-bold text-xl">Mafia Island Authentic</span>
             </div>
             <p className="text-gray-300 mb-4">
               Discover Tanzania's hidden paradise with pristine coral reefs, whale sharks, and authentic cultural
@@ -64,7 +64,7 @@ export const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-primary" />
-                <span className="text-gray-300">info@mafiaislandtours.com</span>
+                <span className="text-gray-300">mafiaislandauthentic@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-primary" />
@@ -75,7 +75,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">© {new Date().getFullYear()} Mafia Island Adventures. All rights reserved.</p>
+          <p className="text-gray-400">© {new Date().getFullYear()} Mafia Island Authentic. All rights reserved.</p>
         </div>
       </div>
     </footer>
