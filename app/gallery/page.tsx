@@ -78,7 +78,7 @@ export default function GalleryPage() {
   }
 
   // Handle image click/double tap
-  const handleImageClickDesktop = (image) => {
+  const handleImageClickDesktop = (image: typeof images[0]) => {
     setZoomedImage(image)
   }
 
@@ -128,7 +128,11 @@ export default function GalleryPage() {
                 <div
                   key={index}
                   className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white"
-                  onClick={() => setZoomedImage(image)}
+                  onClick={() => {
+                    if (!isTouch) {
+                      setZoomedImage(image);
+                    }
+                  }}
                   onTouchEnd={() => handleImageClick(image)}
                   style={{ cursor: "pointer" }}
                 >
