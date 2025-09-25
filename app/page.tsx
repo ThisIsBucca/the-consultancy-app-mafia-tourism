@@ -100,7 +100,7 @@ export default function HomePage() {
       <section className="py-16 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-montserrat">
-            Ready for Your Mafia Island Adventure?
+            Ready for Your Mafia Island Authentic?
           </h2>
           <p className="text-xl text-white mb-8 max-w-3xl mx-auto font-inter">
             Join us for an unforgettable journey to one of the world's most pristine marine environments. Book your tour

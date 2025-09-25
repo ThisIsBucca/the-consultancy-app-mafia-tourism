@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black bg-opacity-30" />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">About Mafia Island Tours</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">About Mafia Island Authentic</h1>
             <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto px-4">
               Your gateway to authentic experiences in Tanzania's hidden paradise
             </p>
@@ -108,30 +108,27 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              {
-                name: "Marine Makanza",
-                role: "Lead Marine Guide",
-                experience: "15 years",
-                specialty: "Whale shark encounters",
-              },
+          
               {
                 name: "Chinanda Salumu",
                 role: "Cultural Tour Guide",
                 experience: "12 years",
+                imageUrl: "/Chinanda.jpg",
                 specialty: "Village tours & traditions",
               },
               {
                 name: "Bucca Rabbit",
                 role: "Diving Instructor",
+                imageUrl:"/bucca.jpeg",
                 experience: "10 years",
                 specialty: "Coral reef diving",
               },
             ].map((member, index) => (
               <div key={index} className="text-center">
                 <div className="relative h-48 w-48 mx-auto mb-4 rounded-full overflow-hidden">
-                  <Image src="/placeholder.svg?height=200&width=200" alt={member.name} fill className="object-cover" />
+                  <Image src={`${member.imageUrl}?height=200&width=200`} alt={member.name} fill className="object-cover" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
                 <p className="text-primary font-medium mb-2">{member.role}</p>

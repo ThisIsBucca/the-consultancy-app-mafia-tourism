@@ -82,8 +82,8 @@ export default function ContactPage() {
                   <Mail className="h-6 w-6 text-primary mt-1" />
                   <div>
                     <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">info@mafiaislandadventures.com</p>
-                    <p className="text-gray-600">mafiaaadventures01@gmail.com</p>
+                    <p className="text-gray-600">mafiaislandauthentic@gmail.com</p>
+                    <p className="text-gray-600">buccaphilox0104@gmail.com</p>
                   </div>
                 </div>
 
@@ -110,79 +110,29 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Chinanda Profile Card */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-
-              {isSubmitted && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-                  <div className="flex items-center">
-                    <div className="text-green-600 text-xl mr-3">✓</div>
-                    <div>
-                      <h3 className="text-green-800 font-semibold">Message Sent!</h3>
-                      <p className="text-green-700 text-sm">
-                        Thank you for contacting us. We'll get back to you within 24 hours.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                    <input
-                      {...register("name")}
-                      type="text"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Enter your full name"
-                    />
-                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                    <input
-                      {...register("email")}
-                      type="email"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Enter your email address"
-                    />
-                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
-                  <input
-                    {...register("subject")}
-                    type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="What's this about?"
-                  />
-                  {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject.message}</p>}
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                  <textarea
-                    {...register("message")}
-                    rows={6}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Tell us about your travel plans, questions, or special requirements..."
-                  />
-                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>}
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
+            <div className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
+              <img
+                src="/chinanda.jpg"
+                alt="Chinanda Salumu"
+                className="w-32 h-32 rounded-full mb-4 border border-primary object-cover"
+              />
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Chinanda Salumu</h2>
+              <p className="text-primary font-medium mb-1">Cultural Tour Guide</p>
+              <p className="text-gray-600 text-sm mb-1">12 years experience</p>
+              <p className="text-gray-600 text-sm mb-4">Specialty: Village tours & traditions</p>
+              <p className="text-gray-600 text-sm mb-6">WhatsApp: +255 785 696 021</p>
+              <button
+                onClick={() => {
+                  const defaultMessage = "Hello Chinanda! I'm interested in a Mafia Island cultural tour. Please provide more details.";
+                  const url = `https://wa.me/255785696021?text=${encodeURIComponent(defaultMessage)}`;
+                  window.open(url, "_blank");
+                }}
+                className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/80 transition-colors"
+              >
+                Chat with Chinanda on WhatsApp
+              </button>
             </div>
           </div>
         </div>
@@ -237,7 +187,7 @@ export default function ContactPage() {
       {/* WhatsApp Float Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <a
-          href="https://wa.me/255776986840"
+          href="https://wa.me/255785696021"
           target="_blank"
           rel="noopener noreferrer"
           className="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl transform hover:scale-110"

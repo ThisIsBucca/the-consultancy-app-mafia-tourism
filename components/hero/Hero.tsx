@@ -59,7 +59,7 @@ export default function Hero() {
         </div>
 
         <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-[#1a3c2b] mb-6 leading-tight drop-shadow-lg tracking-wider">
-          Mafia Island Adventures
+          Mafia Island Authentic
         </h1>
 
         <div className="w-24 h-1 bg-accent mx-auto mb-6" />
