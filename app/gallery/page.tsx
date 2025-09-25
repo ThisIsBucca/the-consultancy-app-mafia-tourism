@@ -1,55 +1,62 @@
+"use client";
 import Image from "next/image"
+import { useState } from "react"
 
 export default function GalleryPage() {
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      alt: "Whale shark swimming in crystal clear waters",
+      src: "/whaleshark-blue-1.jpg",
+      alt: "Whale shark swimming in blue water",
       category: "Marine Life",
     },
     {
-      src: "https://images.unsplash.com/photo-1582967788606-a171c1080cb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      src: "/coralreef1.jpg",
       alt: "Colorful coral reef with tropical fish",
       category: "Coral Reefs",
     },
     {
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      src: "/sunsetcruise1.jpg",
       alt: "Traditional dhow boat at sunset",
       category: "Culture",
     },
     {
-      src: "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      src: "/beach1.jpg",
       alt: "Pristine white sand beach",
       category: "Beaches",
     },
     {
-      src: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      alt: "Local fishermen preparing nets",
-      category: "Culture",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      alt: "Snorkeler swimming with sea turtle",
+      src: "/whaleshark-greenblue-1.jpg",
+      alt: "Whale shark in green-blue water",
       category: "Marine Life",
     },
     {
-      src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      alt: "Mangrove forest aerial view",
+      src: "/coralreef2.jpg",
+      alt: "Coral reef closeup",
+      category: "Coral Reefs",
+    },
+    {
+      src: "/lagoon1.jpg",
+      alt: "Lagoon aerial view",
       category: "Nature",
     },
     {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      alt: "Traditional village on Mafia Island",
+      src: "/sunsetcruise2.jpg",
+      alt: "Sunset cruise on Mafia Island",
       category: "Culture",
     },
     {
-      src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      alt: "Diving with manta rays",
-      category: "Marine Life",
+      src: "/beach2.jpg",
+      alt: "Secluded beach",
+      category: "Beaches",
     },
   ]
 
   const categories = ["All", "Marine Life", "Coral Reefs", "Culture", "Beaches", "Nature"]
+  const [selectedCategory, setSelectedCategory] = useState("All")
+
+  const filteredImages = selectedCategory === "All"
+    ? images
+    : images.filter((img) => img.category === selectedCategory)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -75,7 +82,8 @@ export default function GalleryPage() {
           {categories.map((category) => (
             <button
               key={category}
-              className="px-6 py-3 rounded-full font-medium bg-white text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md border border-gray-200"
+              className={`px-6 py-3 rounded-full font-medium bg-white text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md border border-gray-200 ${selectedCategory === category ? "bg-primary text-white" : ""}`}
+              onClick={() => setSelectedCategory(category)}
             >
               {category}
             </button>
@@ -83,11 +91,11 @@ export default function GalleryPage() {
         </div>
 
         {/* Check if images exist */}
-        {images.length > 0 ? (
+        {filteredImages.length > 0 ? (
           <>
             {/* Image Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {images.map((image, index) => (
+              {filteredImages.map((image, index) => (
                 <div
                   key={index}
                   className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white"

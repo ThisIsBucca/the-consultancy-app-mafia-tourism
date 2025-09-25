@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
 
 const bgImages = [
-  "/sunsetcruise2.jpg",
+  "/coralreef2.jpg",
   "/kasa.jpg",
   "/whaleshark-blue-3.jpg",
 ];
@@ -50,7 +50,7 @@ export default function Hero() {
       </div>
 
       {/* White Overlay */}
-      <div className="absolute inset-0 bg-white bg-opacity-10 backdrop-blur-sm z-10 transition-all duration-500" />
+      <div className="absolute inset-0 bg-white bg-opacity-5 backdrop-blur-sm z-10 transition-all duration-500" />
 
       {/* Hero Content */}
       <div className="relative z-20 text-center max-w-5xl mx-auto px-4 py-20">
