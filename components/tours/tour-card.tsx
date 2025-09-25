@@ -11,12 +11,22 @@ interface TourCardProps {
     duration: string
     location?: string
     category: string
-    image_url: string
+    image_url?: string
+    image?: string
     slug: string
   }
 }
 
 export const TourCard = ({ tour }: TourCardProps) => {
+  // Generate a steady rating based on tour id
+  const getRating = (id: string) => {
+    // Simple hash to float between 4.5 and 5.0
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+      hash += id.charCodeAt(i);
+    }
+    return (4.5 + (hash % 50) / 100).toFixed(1);
+  }
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "Marine":
@@ -36,7 +46,7 @@ export const TourCard = ({ tour }: TourCardProps) => {
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
       <div className="relative h-48 overflow-hidden">
         <Image
-          src={tour.image_url || "/placeholder.svg?height=300&width=400"}
+          src={tour.image || "/placeholder.svg"}
           alt={tour.title}
           fill
           className="object-cover transition-transform duration-300 hover:scale-105"
@@ -66,21 +76,31 @@ export const TourCard = ({ tour }: TourCardProps) => {
           )}
           <div className="flex items-center gap-1">
             <Star className="h-4 w-4 text-accent fill-current" />
-            <span>4.9</span>
+            <span>{getRating(tour.id)}</span>
           </div>
         </div>
 
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-primary font-montserrat">
-            ${tour.price}
+            {tour.price}
             <span className="text-sm text-gray-500 font-normal font-inter"> per person</span>
           </div>
-          <Link
-            href={`/tours/${tour.slug}`}
-            className="btn-primary px-6 py-2 rounded-lg hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
-          >
-            View Details
-          </Link>
+            {tour.slug ? (
+              <Link
+                href={`/tours/${tour.slug}`}
+                className="btn-primary px-6 py-2 rounded-lg hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                View Details
+              </Link>
+            ) : (
+              <button
+                className="btn-primary px-6 py-2 rounded-lg opacity-50 cursor-not-allowed"
+                disabled
+                title="Tour details unavailable"
+              >
+                View Details
+              </button>
+            )}
         </div>
       </div>
     </div>

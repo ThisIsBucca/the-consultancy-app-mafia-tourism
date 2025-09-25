@@ -50,7 +50,7 @@ export default function TourPageClient({ slug }: TourPageClientProps) {
         {/* Hero Image */}
         <div className="relative h-96 rounded-xl overflow-hidden mb-8">
           <Image
-            src={tour.image_url || "/placeholder.svg?height=400&width=1200"}
+            src={tour.image || "/placeholder.svg?height=400&width=1200"}
             alt={tour.title}
             fill
             className="object-cover"
@@ -95,11 +95,11 @@ export default function TourPageClient({ slug }: TourPageClientProps) {
 
               <p className="text-gray-700 text-lg leading-relaxed mb-6">{tour.description}</p>
 
-              {tour.highlights?.length > 0 && (
+              {(tour.highlights?.length ?? 0) > 0 && (
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Tour Highlights</h3>
                   <ul className="space-y-2">
-                    {tour.highlights.map((highlight, index) => (
+                    {(tour.highlights ?? []).map((highlight, index) => (
                       <li key={index} className="flex items-center">
                         <Star className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
                         <span className="text-gray-700">{highlight}</span>
@@ -143,7 +143,7 @@ export default function TourPageClient({ slug }: TourPageClientProps) {
           {/* Booking Form */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <BookingForm tourId={tour.id} tourTitle={tour.title} tourPrice={tour.price} />
+              <BookingForm tourId={tour.id} tourTitle={tour.title} tourPrice={parseFloat((tour.price ?? "0").replace(/[^\d.]/g, ""))} />
             </div>
           </div>
         </div>

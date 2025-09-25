@@ -36,7 +36,7 @@ export const ActivityCard = ({ activity }: ActivityCardProps) => (
           {activity.additionalFees && (
             <span className="text-xs sm:text-sm text-gray-500">+ {activity.additionalFees} fees</span>
           )}
-        </div>
+        </div>z
       </div>
 
       <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{activity.description}</p>

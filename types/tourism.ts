@@ -16,18 +16,31 @@ export interface Activity {
   category: string
   image: string
   emoji: string
+  slug: string
 }
 
 export interface CulturalActivity {
+  highlights: string[]
+  category: string
+  emoji: string
+  id: string
+  title: string
   name: string
   price: string
   description: string
   image: string
+  slug: string
 }
 
 export interface Sandbank {
+  id: string
+  title: string
+  highlights: string[]
+  category: string
+  emoji: string
   name: string
   price: string
+  slug: string
   features: string
   image: string
 }

@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
 
 const bgImages = [
-  "/coralreef2.jpg",
+  "/whalevibe4.jpg",
   "/kasa.jpg",
-  "/whaleshark-blue-3.jpg",
+  "/coralreefsvibe2.jpg",
 ];
 
 export default function Hero() {
