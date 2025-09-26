@@ -1,9 +1,84 @@
+"use client"
 import { TestimonialsSection } from "../components/testimonials/testimonials-section"
 import WhatsAppFloat from "../components/ui/WhatsAppFloat"
 import  Hero  from "../components/hero/Hero"
 import Link from "next/link"
-import Image from "next/image"
 import { Waves, Users, Camera, Star } from "lucide-react"
+// Modern animated carousel for About Preview
+import { useEffect, useState } from "react"
+
+const carouselImages = [
+  "/coralreef1.jpg",
+  "/lagoon1.jpg",
+  "/whalevibe2.jpg",
+  "/beach2.jpg"
+]
+
+
+function CarouselColl() {
+  const [current, setCurrent] = useState(0)
+  const [prevIdx, setPrevIdx] = useState(0)
+  const [fade, setFade] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPrevIdx(current)
+      setFade(true)
+      setTimeout(() => {
+        setCurrent((prev) => (prev + 1) % carouselImages.length)
+        setFade(false)
+      }, 500)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [current])
+
+  const goTo = (idx: number) => {
+    setPrevIdx(current)
+    setFade(true)
+    setTimeout(() => {
+      setCurrent(idx)
+      setFade(false)
+    }, 500)
+  }
+  const prev = () => goTo((current - 1 + carouselImages.length) % carouselImages.length)
+  const next = () => goTo((current + 1) % carouselImages.length)
+
+  return (
+    <div className="relative h-96 rounded-xl overflow-hidden">
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+        <img
+          key={`carousel-img-${current}`}
+          src={carouselImages[current]}
+          alt="Mafia Island Tour"
+          className="w-full h-full object-cover rounded-xl shadow-2xl border-4 border-white/20"
+          style={{
+            opacity: 1,
+            position: 'absolute',
+            transition: 'opacity 0.5s ease-in',
+          }}
+        />
+      </div>
+      {/* Carousel Controls */}
+      <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow hover:bg-white z-20">
+        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow hover:bg-white z-20">
+        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+      {/* Indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {carouselImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className={`w-4 h-4 rounded-full border-2 border-primary transition-all duration-300 ${i === current ? "bg-primary" : "bg-white/60"}`}
+            aria-label={`Go to slide ${i+1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function HomePage() {
   const features = [
@@ -40,7 +115,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-montserrat">
-              Why Choose Mafia Island Tours?
+              Why Choose Mafia Island Authentics?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto font-inter">
               We offer authentic, sustainable tourism experiences that benefit local communities while providing you
@@ -68,7 +143,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-montserrat">
-                Discover Tanzania's Best Kept Secret
+                Discover Tanzania's Best Kept Secrets
               </h2>
               <p className="text-lg text-gray-600 mb-6 font-inter">
                 Mafia Island is a pristine paradise in the Indian Ocean, home to the world's largest population of whale
@@ -83,12 +158,9 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="relative h-96 rounded-xl overflow-hidden">
-              <Image
-                src="/lagoon1.jpg"
-                alt="Aerial photo of blue water and green trees by Pok Rie"
-                fill
-                className="object-cover"
-              />
+              {/* Modern Animated Carousel */}
+              <CarouselColl />
+
             </div>
           </div>
         </div>

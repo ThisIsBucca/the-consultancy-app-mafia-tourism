@@ -3,62 +3,46 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
 
-const bgImages = [
-  "/whalevibe4.jpg",
-  "/kasa.jpg",
-  "/coralreefsvibe2.jpg",
-];
 
 export default function Hero() {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % bgImages.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="relative h-[100dvh] overflow-hidden flex items-center justify-center">
-      {/* Background Images Carousel */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        {bgImages.map((url, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out rounded-3xl shadow-2xl border-4 border-white/20 ${
-              idx === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
-            }`}
-            style={{
-              backgroundImage: `url(${url})`,
-              transition: "opacity 1s ease-in-out, transform 1s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          >
-            {/* Modern carousel indicators */}
-            {idx === current && (
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                {bgImages.map((_, i) => (
-                  <span
-                    key={i}
-                    className={`w-4 h-4 rounded-full border-2 border-primary transition-all duration-300 ${i === current ? "bg-primary" : "bg-white/60"}`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      {/* Autoplay Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="/whaledeymove.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+
+      {/* Animated Gradient Overlay */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          background: "linear-gradient(115deg, rgba(0,212,255,0.18) 0%, rgba(255,255,255,0.12) 50%, rgba(255,180,80,0.18) 100%)",
+          animation: "gradientMove 8s ease-in-out infinite alternate"
+        }}
+      />
+      <style>{`
+        @keyframes gradientMove {
+          0% { filter: blur(0px) opacity(1); }
+          50% { filter: blur(8px) opacity(0.9); }
+          100% { filter: blur(0px) opacity(1); }
+        }
+      `}</style>
 
       {/* White Overlay */}
-      <div className="absolute inset-0 bg-white bg-opacity-5 backdrop-blur-sm z-10 transition-all duration-500" />
+      <div className="absolute inset-0 bg-white bg-opacity-5 backdrop-blur-sm z-20 transition-all duration-500" />
 
       {/* Hero Content */}
-      <div className="relative z-20 text-center max-w-5xl mx-auto px-4 py-20">
+      <div className="relative z-30 text-center max-w-5xl mx-auto px-4 py-20">
         <div className="mb-6 flex justify-center">
           <Crown className="text-yellow-500 w-10 h-10 drop-shadow-md" />
         </div>
 
-        <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-[#1a3c2b] mb-6 leading-tight drop-shadow-lg tracking-wider">
+        <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-[#1a3c2b] mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
           Mafia Island Authentic
         </h1>
 

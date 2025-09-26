@@ -26,16 +26,20 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Mafia Island Tours - Discover Tanzania's Hidden Paradise",
+  title: "Mafia Island Authentic - Discover Tanzania's Hidden Paradise",
   description:
     "Experience whale sharks, pristine coral reefs, and authentic culture on Mafia Island, Tanzania. Book your adventure today!",
-  keywords: "Mafia Island, Tanzania, whale sharks, diving, snorkeling, tours, travel",
+  keywords: "Mafia Island, Tanzania, whale sharks, diving, snorkeling, tours, travel, mafia island tours, authentic experiences, cultural tours, marine life, eco-tourism,safari, beach holidays, mafia island activities, mafia safari, island tours, ocean adventures",
   openGraph: {
-    title: "Mafia Island Tours - Discover Tanzania's Hidden Paradise",
+    title: "Mafia Island Authentic - Discover Tanzania's Hidden Paradise",
     description: "Experience whale sharks, pristine coral reefs, and authentic culture on Mafia Island, Tanzania.",
-    images: ["/og-image.jpg"],
+    images: [
+      "/lagoon.jpg",
+      "/sunsetcruise.jpg",
+      "/whaleshark.jpg"
+    ],
   },
-    generator: 'v0.dev'
+  generator: 'bucca-philox',
 }
 
 export default function RootLayout({
