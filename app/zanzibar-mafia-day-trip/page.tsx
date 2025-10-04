@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Clock, Plane, Waves, Coffee, Bird, Calendar, Users, CreditCard, XCircle, Pencil } from "lucide-react"
+import { Clock, Plane, Waves, Coffee, Bird, Calendar, Users, CreditCard, XCircle, Pencil, DollarSign } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function ZanzibarMafiaDayTripPage() {
@@ -24,7 +24,12 @@ export default function ZanzibarMafiaDayTripPage() {
               <Calendar className="w-4 h-4 mr-1" />
               Best Season: August – March
             </Badge>
-          </div>
+
+            <Badge variant="secondary" className="text-sm mt-4 lg:ml-4">
+              <DollarSign className="w-4 h-4 mr-1" />
+             PRICE : $550 per person
+            </Badge>
+          </div> 
 
           <Card className="mb-6 md:mb-8">
             <CardHeader>
