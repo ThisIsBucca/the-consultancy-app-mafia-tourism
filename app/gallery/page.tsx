@@ -18,7 +18,7 @@ export default function GalleryPage() {
     "coralreef3.jpg": "A panoramic view of coral gardens beneath crystal clear water.",
     "coralreefsvibe2.jpg": "Coral reefs glowing in the sunlight, full of life and color.",
     "cutecoralreef.jpg": "A playful scene of small fish darting among cute coral formations.",
-    "kasa.jpg": "Sea turtle gliding underwater above coral reefs.",
+    "kasa.jpg": "Sea turtle lgliding underwater above coral reefs.",
     "lagoon1.jpg": "Aerial view of a tranquil lagoon with blue-green water.",
     "sunsetcruise1.jpg": "A dhow boat sailing at sunset, capturing the island's culture.",
     "sunsetcruise2.jpg": "Tourists enjoying a sunset cruise on Mafia Island.",
@@ -37,7 +37,8 @@ export default function GalleryPage() {
     "whalevibe2.jpg": "A whale shark surrounded by colorful fish.",
     "whalevibe3.jpg": "A whale shark swimming near coral reefs.",
     "whalevibe4.jpg": "A whale shark gliding under the sunlit surface.",
-    "whalevibe5.jpg": "A whale shark in the open ocean, full of energy."
+    "whalevibe5.jpg": "A whale shark in the open ocean, full of energy.",
+    "bat1.jpg": "A bat hanging upside down on tree branch."
   };
 
   const images = publicImages.map((filename) => ({
@@ -50,6 +51,7 @@ export default function GalleryPage() {
       : filename.includes('lagoon') ? 'Nature'
       : filename.includes('sunsetcruise') ? 'Culture'
       : filename.includes('hero') ? 'Nature'
+      : filename.includes('bat1') ? 'Nature'
       : filename.includes('kasa') ? 'Nature'
       : filename.includes('face') ? 'Marine Life'
       : 'Other',

@@ -3,6 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X, Waves } from "lucide-react"
+import { WhatWeOfferButton } from "../WhatWeOfferButton"
+
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -39,6 +41,7 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+            <WhatWeOfferButton/>
             <Link href="/contact" className="btn-primary px-6 py-2 rounded-lg text-sm font-medium transition-colors">
               Book Now
             </Link>
@@ -78,6 +81,7 @@ export const Navbar = () => {
               >
                 Book Now
               </Link>
+             <WhatWeOfferButton/>
             </div>
           </div>
         )}
