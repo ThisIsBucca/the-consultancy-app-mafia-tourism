@@ -17,6 +17,8 @@ export {
   navigationTabs,
   siteInfo
 }
+
+
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import type { Database } from "./supabase"
 
@@ -75,7 +77,7 @@ const fallbackTestimonials: Testimonial[] = [
 export const useTours = () => {
   return useQuery({
     queryKey: ["tours"],
-    queryFn: async () => marineActivities.concat(islandActivities),
+    queryFn: async () => marineActivities.concat(islandActivities).concat(sandbanks).concat(culturalActivities),
   })
 }
 
@@ -83,7 +85,7 @@ export const useTour = (slug: string) => {
   return useQuery({
     queryKey: ["tour", slug],
     queryFn: async () => {
-  const allTours = marineActivities.concat(islandActivities);
+  const allTours = marineActivities.concat(islandActivities).concat(culturalActivities).concat(sandbanks);
   const tour = allTours.find((t) => t.id === slug || ("slug" in t && t.slug === slug));
   if (!tour) throw new Error("Tour not found");
   return tour;

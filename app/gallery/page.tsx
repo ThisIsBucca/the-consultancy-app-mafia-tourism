@@ -6,58 +6,73 @@ import { motion, AnimatePresence } from "framer-motion"
 export default function GalleryPage() {
   // Dynamically get all images in public except placeholders
   const publicImages = [
-    "beach1.jpg", "beach2.jpg", "coralreef1.jpg", "coralreef2.jpg", "coralreef3.jpg", "coralreefsvibe2.jpg", "cutecoralreef.jpg", "kasa.jpg", "lagoon1.jpg", "sunsetcruise2.jpg", "whaleface.jpg", "whaleshark-blue-1.jpg", "whaleshark-blue-2.jpg", "whaleshark-blue-3.jpg", "whaleshark-blue-4.jpg", "whaleshark-blue-5.jpg", "whaleshark-greenblue-1.jpg", "whaleshark-greenblue-2.jpg", "whaleshark-greenblue-3.jpg", "whaleshark-greenblue-4.jpg", "whaleshark-greenblue-5.jpg", "whalesharkvibe1.jpg", "whalevibe2.jpg", "whalevibe3.jpg", "whalevibe4.jpg", "whalevibe5.jpg"
+    "beach1.jpg", "lagoon2.jpg", "coralreef1.jpg", "hippo1.jpg", "coralreef3.jpg", "coralreefsvibe2.jpg", "sunsetcruise1.jpg","cutecoralreef.jpg", "kasa.jpg", "lagoon1.jpg", "sunsetcruise2.jpg", "sandbank3.jpg", "whaleshark-blue-1.jpg", "juani.jpg", "chole2.jpg", "whaleshark-blue-3.jpg", "chole1.jpg", "whaleshark-greenblue-1.jpg", "hippopond1.jpg", "chole3.jpg",  "kua3.jpg", "whalesharkvibe1.jpg", "hippo2.jpg","bat2.jpg", "kua1.jpg","bat1.jpg","sandbank1.jpg","mkumbi1.jpg","sunsetCruise4.jpg","turtle1.jpg","mkumbi2.jpg","turtle2.jpg","village1.jpg","village2.jpg"
   ];
 
   // Unique descriptions for each image
   const imageDescriptions: Record<string, string> = {
     "beach1.jpg": "A pristine white sand beach with turquoise waters, perfect for relaxation.",
-    "beach2.jpg": "A secluded beach surrounded by lush greenery and gentle waves.",
+    "lagoon2.jpg": "A clear blue lagoon surrounded by dense green mangrove trees.",
     "coralreef1.jpg": "A vibrant coral reef teeming with tropical fish and marine life.",
-    "coralreef2.jpg": "Closeup of colorful corals showcasing the diversity of Mafia Island's reefs.",
+    "hippo1.jpg": "hippo's head partially submerged in pond.",
     "coralreef3.jpg": "A panoramic view of coral gardens beneath crystal clear water.",
     "coralreefsvibe2.jpg": "Coral reefs glowing in the sunlight, full of life and color.",
+    "sunsetcruise1.jpg": "A dhow boat sailing at sunset, capturing the island's culture.",
     "cutecoralreef.jpg": "A playful scene of small fish darting among cute coral formations.",
     "kasa.jpg": "Sea turtle lgliding underwater above coral reefs.",
     "lagoon1.jpg": "Aerial view of a tranquil lagoon with blue-green water.",
-    "sunsetcruise1.jpg": "A dhow boat sailing at sunset, capturing the island's culture.",
     "sunsetcruise2.jpg": "Tourists enjoying a sunset cruise on Mafia Island.",
-    "whaleface.jpg": "A closeup of a whale shark's face in deep blue water.",
+    "sandbank3.jpg": "three fish skewered on sticks, cooking them.",
     "whaleshark-blue-1.jpg": "Whale shark swimming gracefully in the blue ocean.",
-    "whaleshark-blue-2.jpg": "A whale shark gliding through clear blue water.",
+    "juani.jpg": "A small rocky juani island with lush green vegetation and tall palm trees.",
+    "chole2.jpg": "Several jackfruits growing on a tree trunk.",
     "whaleshark-blue-3.jpg": "A majestic whale shark surrounded by tiny fish.",
-    "whaleshark-blue-4.jpg": "A whale shark's silhouette in the deep blue sea.",
-    "whaleshark-blue-5.jpg": "A whale shark exploring the depths of Mafia Island's waters.",
-    "whaleshark-greenblue-1.jpg": "Whale shark in green-blue water, blending with the lagoon.",
-    "whaleshark-greenblue-2.jpg": "A whale shark swimming in vibrant green-blue waters.",
-    "whaleshark-greenblue-3.jpg": "A whale shark and snorkeler in green-blue water.",
-    "whaleshark-greenblue-4.jpg": "Whale shark cruising through the green-blue lagoon.",
-    "whaleshark-greenblue-5.jpg": "A whale shark in the emerald waters of Mafia Island.",
+    "chole1.jpg": "A calm waterfront scene viewed from under a boat roof at chole island.",
+    "hippopond1.jpg": "Lush wetland area with patches of green vegetation.",
+    "chole3.jpg": "A quiet historic spot surrounded by nature.",
+    "kua3.jpg": "A narrow stone staircase leading up between rough,weathered stone walls.",
     "whalesharkvibe1.jpg": "A playful whale shark enjoying the tropical vibe.",
-    "whalevibe2.jpg": "A whale shark surrounded by colorful fish.",
-    "whalevibe3.jpg": "A whale shark swimming near coral reefs.",
-    "whalevibe4.jpg": "A whale shark gliding under the sunlit surface.",
-    "whalevibe5.jpg": "A whale shark in the open ocean, full of energy.",
-    "bat1.jpg": "A bat hanging upside down on tree branch."
+    "hippo2.jpg": "two hippos partially submerged in calm, reflective pond.",
+    "bat2.jpg": "A group of bats hanging upside down on tree branch.",
+    "kua1.jpg": "Ancient stone ruins surrounded by dense green forest.",
+    "mkumbi1.jpg": "A tall lighthouse with red and horizontal stripes standing next to a single story building.",
+    "mkumbi2.jpg": "A tall lighthouse surrounded by green trees.",
+    "bat1.jpg": "A bat hanging upside down on tree branch.",
+    "turtle1.jpg": "A tiny baby sea turtle crawling on sandy beach.",
+    "turtle2.jpg": "A tiny baby sea turtle moving across sandy ground.",
+    "village1.jpg": "A lush green landscape with tall, slender coconut palm trees leaning slightly.",
+    "village2.jpg": "A peceful dirt path winding through a dense grove of all coconut palm trees.",
+    "sandbank1.jpg": "narrow sandbar extending into the water, with boat docked near the shore.",
+
   };
 
   const images = publicImages.map((filename) => ({
     src: `/${filename}`,
     alt: filename.replace(/[-_]/g, ' ').replace(/\.[a-zA-Z]+$/, ''),
     description: imageDescriptions[filename] || "A beautiful scene from Mafia Island.",
-    category: filename.includes('whale') ? 'Marine Life'
+    category: filename.includes('whale') ? 'whale shark'
       : filename.includes('coralreef') || filename.includes('coral') ? 'Coral Reefs'
       : filename.includes('beach') ? 'Beaches'
-      : filename.includes('lagoon') ? 'Nature'
-      : filename.includes('sunsetcruise') ? 'Culture'
+      : filename.includes('lagoon') ? 'lagoon'
+      : filename.includes('sunsetcruise') ? 'sunset cruise'
+      : filename.includes('sunsetCruise') ? 'sunset cruise'
       : filename.includes('hero') ? 'Nature'
-      : filename.includes('bat1') ? 'Nature'
-      : filename.includes('kasa') ? 'Nature'
+      : filename.includes('juani') ? 'juani island'
+      : filename.includes('bat') ? 'flying foxes'
+      : filename.includes('kasa') ? 'turtle'
+      : filename.includes('turtle') ? 'turtle'
+      : filename.includes('hippo') ? 'hippos'
+      : filename.includes('hippopond') ? 'hippo pond'
+      : filename.includes('sandbank') ? 'sandbank'
       : filename.includes('face') ? 'Marine Life'
+      : filename.includes('mkumbi') ? 'lighthouse-ras mkumbi'
+      : filename.includes('kua') ? 'kua ruins'
+      : filename.includes('chole') ? 'chole island'
+      : filename.includes('village') ? 'village tour '
       : 'Other',
   }));
 
-  const categories = ["All", "Marine Life", "Coral Reefs", "Culture", "Beaches", "Nature"]
+  const categories = ["All", "whale shark", "village tour", "Coral Reefs", "turtle", "Beaches","sandbank", "lighthouse-ras mkumbi","flying foxes","hippos", "hippo pond", "kua ruins", "juani island", "chole island", "lagoon", "sunset cruise"]
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [zoomedImage, setZoomedImage] = useState<null | typeof images[0]>(null);
   const [lastTap, setLastTap] = useState<number>(0);

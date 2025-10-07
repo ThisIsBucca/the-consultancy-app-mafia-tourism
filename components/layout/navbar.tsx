@@ -64,6 +64,7 @@ export const Navbar = () => {
         {isOpen && (
           <div id="mobile-nav-menu" className="md:hidden border-t border-gray-100">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
+              <WhatWeOfferButton/>
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -74,14 +75,7 @@ export const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                className="btn-primary block px-3 py-2 rounded-md text-base font-medium transition-colors mt-4"
-                onClick={() => setIsOpen(false)}
-              >
-                Book Now
-              </Link>
-             <WhatWeOfferButton/>
+             
             </div>
           </div>
         )}
