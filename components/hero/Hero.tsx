@@ -1,28 +1,46 @@
 "use client";
-import { useEffect, useState } from "react";
+
 import Link from "next/link";
 import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
-
+import Image from 'next/image'
+import LoopCarousel from '@/components/carousel/LoopCarousel'
 
 export default function Hero() {
   return (
     <div className="relative h-[100dvh] overflow-hidden flex items-center justify-center">
       {/* Autoplay Background Video */}
-      <video
+      {/* <video
         className="absolute inset-0 w-full h-full object-cover z-0"
         src="/whaledeymove.mp4"
         autoPlay
         loop
         muted
         playsInline
-      />
+      /> */}
+
+      {/* lets add bg image here */}
+
+      {/* <Image
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="/lagoon1.jpg"
+        alt="cute bat in mafia"
+        layout="fill"
+        objectFit="cover"
+        loading="lazy"
+      /> */}
+      
+      
+      <div  className="absolute  inset-0 w-full h-full z-0">
+          <LoopCarousel />
+      </div>
 
       {/* Animated Gradient Overlay */}
-      <div
+      <div 
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: "linear-gradient(115deg, rgba(0,212,255,0.18) 0%, rgba(255,255,255,0.12) 50%, rgba(255,180,80,0.18) 100%)",
-          animation: "gradientMove 8s ease-in-out infinite alternate"
+          background:
+            "linear-gradient(115deg, rgba(0,212,255,0.18) 0%, rgba(255,255,255,0.12) 50%, rgba(255,180,80,0.18) 100%)",
+          animation: "gradientMove 8s ease-in-out infinite alternate",
         }}
       />
       <style>{`
@@ -39,10 +57,14 @@ export default function Hero() {
       {/* Hero Content */}
       <div className="relative z-30 text-center max-w-5xl mx-auto px-4 py-20">
         <div className="mb-6 flex justify-center">
-          <Crown className="text-yellow-500 w-10 h-10 drop-shadow-md" />
+          <Crown className="text-yellow-500 w-10 h-10 drop-shadow-md animate-bounce" />
         </div>
 
-        <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-[#1a3c2b] mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
+        {/* <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-[#1a3c2b] mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
+          Mafia Island Authentic
+        </h1> */}
+
+         <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-yellow-500 mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
           Mafia Island Authentic
         </h1>
 
@@ -50,7 +72,16 @@ export default function Hero() {
 
         <div className="bg-gradient-to-br from-[#e6f7f1] via-white to-[#f7e6e6] bg-opacity-80 backdrop-blur-xl rounded-2xl p-8 max-w-3xl mx-auto shadow-xl mb-10 border-2 border-primary/10">
           <p className="text-2xl md:text-3xl text-primary leading-relaxed font-inter tracking-wide drop-shadow-sm">
-            Mafia Island awaits — <span className="text-primary font-bold">dive into coral beauty</span>, <span className="text-accent font-bold">swim with whale sharks</span>, and <span className="text-[#e6b800] font-bold">feel the culture</span>
+            Mafia Island awaits —{" "}
+            <span className="text-primary font-bold">
+              dive into coral beauty
+            </span>
+            ,{" "}
+            <span className="text-accent font-thin">
+              swim with whale sharks
+            </span>
+            , and{" "}
+            <span className="text-[#e6b800] font-thin">feel the culture</span>
           </p>
         </div>
 

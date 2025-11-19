@@ -51,9 +51,9 @@ export default function ToursPage() {
     <div className="min-h-screen bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Tours & Activities</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Tours <span className="text-yellow-500 animate-pulse font-extrabold text-5xl md:text-6xl">&</span> Activities</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover the wonders of Mafia Island with our carefully curated selection of tours and activities
+            Discover the wonders of <span className="text-primary underline">Mafia Island</span> with our carefully curated selection of  <span className="text-primary underline">tours</span> and  <span className="text-primary underline">activities</span>
           </p>
         </div>
 

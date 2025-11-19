@@ -3,6 +3,7 @@ import { TestimonialsSection } from "../components/testimonials/testimonials-sec
 import WhatsAppFloat from "../components/ui/WhatsAppFloat"
 import  Hero  from "../components/hero/Hero"
 import Link from "next/link"
+import Image from 'next/image';
 import { Waves, Users, Camera, Star } from "lucide-react"
 // Modern animated carousel for About Preview
 import { useEffect, useState } from "react"
@@ -107,8 +108,8 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section - Inline Component */}
-       <Hero/>
-       <WhatsAppFloat/>
+      <Hero />
+      <WhatsAppFloat />
 
       {/* Features Section */}
       <section className="py-16 bg-white">
@@ -118,8 +119,9 @@ export default function HomePage() {
               Why Choose Mafia Island Authentics?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto font-inter">
-              We offer authentic, sustainable tourism experiences that benefit local communities while providing you
-              with unforgettable adventures.
+              We offer authentic, sustainable tourism experiences that benefit
+              local communities while providing you with unforgettable
+              adventures.
             </p>
           </div>
 
@@ -127,10 +129,14 @@ export default function HomePage() {
             {features.map((feature, index) => (
               <div key={index} className="text-center">
                 <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="h-8 w-8 text-primary" />
+                  <feature.icon className="h-8 w-8 text-primary animate-pulse" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 font-montserrat">{feature.title}</h3>
-                <p className="text-gray-600 font-inter">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 font-montserrat">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 font-inter">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
@@ -146,9 +152,11 @@ export default function HomePage() {
                 Discover Tanzania's Best Kept Secrets
               </h2>
               <p className="text-lg text-gray-600 mb-6 font-inter">
-                Mafia Island is a pristine paradise in the Indian Ocean, home to the world's largest population of whale
-                sharks and some of the most diverse marine life on Earth. Our locally-owned tour company is committed to
-                sustainable tourism that protects this incredible ecosystem while providing authentic experiences.
+                Mafia Island is a pristine paradise in the Indian Ocean, home to
+                the world's largest population of whale sharks and some of the
+                most diverse marine life on Earth. Our locally-owned tour
+                company is committed to sustainable tourism that protects this
+                incredible ecosystem while providing authentic experiences.
               </p>
               <Link
                 href="/about"
@@ -159,8 +167,13 @@ export default function HomePage() {
             </div>
             <div className="relative h-96 rounded-xl overflow-hidden">
               {/* Modern Animated Carousel */}
-              <CarouselColl />
-
+              <Image
+                className="inset-0 w-full h-full object-cover z-0"
+                src="/hippo1.jpg"
+                alt="cute bat in mafia"
+                fill
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
@@ -171,12 +184,13 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-16 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-montserrat">
+          <h2 className="text-3xl text-yellow-300 md:text-4xl font-bold  mb-4 font-montserrat">
             Ready for Your Mafia Island Authentic?
           </h2>
           <p className="text-xl text-white mb-8 max-w-3xl mx-auto font-inter">
-            Join us for an unforgettable journey to one of the world's most pristine marine environments. Book your tour
-            today and create memories that will last a lifetime.
+            Join us for an unforgettable journey to one of the world's most
+            pristine marine environments. Book your tour today and create
+            memories that will last a lifetime.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -195,5 +209,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

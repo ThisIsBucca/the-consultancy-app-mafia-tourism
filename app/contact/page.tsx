@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import Image from 'next/image'
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -113,15 +114,25 @@ export default function ContactPage() {
           {/* Chinanda Profile Card */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
-              <img
+
+            <div  className="w-32 h-32 relative">
+            
+             <Image
+             className=" rounded-full mb-4 border border-primary object-cover"
                 src="/chinanda.jpg"
                 alt="Chinanda Salumu"
-                className="w-32 h-32 rounded-full mb-4 border border-primary object-cover"
+                layout='fill'
+                objectFit='cover'
               />
+  
+            </div>
+             
+               
+
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Chinanda Salumu</h2>
-              <p className="text-primary font-medium mb-1">Cultural Tour Guide</p>
-              <p className="text-gray-600 text-sm mb-1">12 years experience</p>
-              <p className="text-gray-600 text-sm mb-4">Specialty: Village tours & traditions</p>
+              <p className="text-primary font-medium mb-1">Co.CEO & Diving instructor</p>
+              <p className="text-gray-600 text-sm mb-1">4 years experience</p>
+              <p className="text-gray-600 text-sm mb-4">Specialty: coral reefs diving  </p>
               <p className="text-gray-600 text-sm mb-6">WhatsApp: +255 785 696 021</p>
               <button
                 onClick={() => {

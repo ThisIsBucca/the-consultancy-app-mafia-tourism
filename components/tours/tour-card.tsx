@@ -43,7 +43,7 @@ export const TourCard = ({ tour }: TourCardProps) => {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-primary border-2  border-gray-100">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={tour.image || "/placeholder.svg"}
