@@ -77,11 +77,11 @@ export default function Hero() {
               dive into coral beauty
             </span>
             ,{" "}
-            <span className="text-accent font-thin">
+            <span className="text-accent font-bold">
               swim with whale sharks
             </span>
             , and{" "}
-            <span className="text-[#e6b800] font-thin">feel the culture</span>
+            <span className="text-[#e6b800] font-bold">feel the culture</span>
           </p>
         </div>
 

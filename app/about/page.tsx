@@ -162,7 +162,7 @@ export default function AboutPage() {
                     alt={member.name}
                     fill
                     className="object-cover"
-                    loading="lazy"
+                    priority
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-1">

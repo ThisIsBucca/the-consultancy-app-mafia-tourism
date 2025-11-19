@@ -121,8 +121,8 @@ export default function ContactPage() {
              className=" rounded-full mb-4 border border-primary object-cover"
                 src="/chinanda.jpg"
                 alt="Chinanda Salumu"
-                layout='fill'
-                objectFit='cover'
+                fill
+                priority
               />
   
             </div>

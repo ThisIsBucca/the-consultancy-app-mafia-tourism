@@ -144,7 +144,7 @@ export const culturalActivities: CulturalActivity[] = [
     name: "Kilindoni Market Tour",
     price: "$30",
     description: "Wander Mafia’s capital market, sample local food, fabrics, and crafts.",
-    image: "/sunsetcruise1.jpg",
+    image: "/kilindoni-market.jpeg",
     highlights: ["Local food tasting", "Fabric shopping", "Crafts market"],
     category: "Cultural",
     emoji: "🛍️",
