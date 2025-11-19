@@ -144,7 +144,7 @@ export default function AboutPage() {
                 name: "Bucca Rabbit",
                 role: "Cultural Tour Guide",
                 experience: "2 years",
-                imageUrl: "/Bucca.jpeg",
+                imageUrl: "/bucca.jpeg",
                 specialty: "Village tours & traditions",
               },
               {

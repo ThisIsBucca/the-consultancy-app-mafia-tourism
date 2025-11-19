@@ -8,7 +8,7 @@ export default function ToursPage() {
   const { data: tours, isLoading, error } = useTours()
   const [selectedCategory, setSelectedCategory] = useState("all")
 
-  const categories = ["all", "Marine", "Cultural", "Adventure", "Relaxation"]
+  const categories = ["all", "Premium", "Seasonal","Historical", "Cultural", "Nature", "Leisure", "Sandbank"]
 
   const filteredTours = tours?.filter((tour) => selectedCategory === "all" || tour.category === selectedCategory)
 
