@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X, Waves } from "lucide-react"
 import { WhatWeOfferButton } from "../WhatWeOfferButton"
+import Image from "next/image"
 
 
 export const Navbar = () => {
@@ -24,7 +25,13 @@ export const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <Waves className="h-6 w-6 text-white" />
+                <Image
+                  src="/icon.png"
+                  alt="Mafia Island Authentic Logo"
+                  fill
+                  className="object-contain rounded-full"
+                  priority    
+                />
               </div>
               <span className="font-montserrat font-bold text-xl text-primary">Mafia Island Authentic</span>
             </Link>
