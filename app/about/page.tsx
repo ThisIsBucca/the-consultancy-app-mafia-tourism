@@ -87,7 +87,7 @@ export default function AboutPage() {
           </div>
           <div className="relative h-96 rounded-xl overflow-hidden">
             <Image
-              src="/village2.jpg?height=400&width=600"
+              src="/icon.png?height=400&width=600"
               alt="Local fishermen on Mafia Island"
               fill
               className="object-cover"
