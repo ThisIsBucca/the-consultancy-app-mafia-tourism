@@ -53,8 +53,7 @@ export const metadata: Metadata = {
       { url: "/beach2.jpg" },
       { url: "/bat1.jpg" },
       { url: "/village1.jpg" },
-      { url: "/Chinanda.jpg" },
-      { url: "/bucca.jpeg" },
+      { url: "/icon.png" },
     ],
   },
 
