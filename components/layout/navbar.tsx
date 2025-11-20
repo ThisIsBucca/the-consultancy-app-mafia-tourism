@@ -24,11 +24,12 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center relative overflow-hidden">
+              <div className="bg-primary p-2 rounded-md w-fit h-fit flex items-center justify-center">
                 <Image
                   src="/icon.png"
                   alt="Mafia Island Authentic Logo"
-                  fill
+                  width={32}
+                  height={32}
                   className="object-contain"
                   priority
                 />
