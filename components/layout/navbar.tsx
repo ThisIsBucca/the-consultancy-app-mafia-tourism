@@ -24,16 +24,19 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center relative overflow-hidden">
                 <Image
                   src="/icon.png"
                   alt="Mafia Island Authentic Logo"
                   fill
-                  className="object-contain rounded-full"
-                  priority    
+                  className="object-contain"
+                  priority
                 />
               </div>
-              <span className="font-montserrat font-bold text-xl text-primary">Mafia Island Authentic</span>
+
+              <span className="font-montserrat font-bold text-xl text-primary">
+                Mafia Island Authentic
+              </span>
             </Link>
           </div>
 
@@ -48,8 +51,11 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <WhatWeOfferButton/>
-            <Link href="/contact" className="btn-primary px-6 py-2 rounded-lg text-sm font-medium transition-colors">
+            <WhatWeOfferButton />
+            <Link
+              href="/contact"
+              className="btn-primary px-6 py-2 rounded-lg text-sm font-medium transition-colors"
+            >
               Book Now
             </Link>
           </div>
@@ -62,16 +68,23 @@ export const Navbar = () => {
               aria-expanded={isOpen}
               aria-controls="mobile-nav-menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div id="mobile-nav-menu" className="md:hidden border-t border-gray-100">
+          <div
+            id="mobile-nav-menu"
+            className="md:hidden border-t border-gray-100"
+          >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
-              <WhatWeOfferButton/>
+              <WhatWeOfferButton />
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -82,11 +95,10 @@ export const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-             
             </div>
           </div>
         )}
       </div>
     </nav>
-  )
+  );
 }
