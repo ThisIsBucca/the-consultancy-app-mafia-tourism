@@ -26,14 +26,9 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mafiaislandauthentic.com"), // ✅ REQUIRED
+  metadataBase: new URL("https://www.mafiaislandauthentic.com"), // ✅ REQUIRED
 
   title: "Mafia Island Authentic - Discover Tanzania's Hidden Paradise",
-  icons: {
-    icon: "/icon.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-icon.png",
-  },
   description:
     "Experience whale sharks, pristine coral reefs, and authentic culture on Mafia Island, Tanzania. Book your adventure today!",
 
@@ -44,7 +39,7 @@ export const metadata: Metadata = {
     title: "Mafia Island Authentic - Discover Tanzania's Hidden Paradise",
     description:
       "Experience whale sharks, pristine coral reefs, and authentic culture on Mafia Island, Tanzania.",
-    url: "https://mafiaislandauthentic.com",
+    url: "/",
     siteName: "Mafia Island Authentic",
     type: "website",
     images: [
