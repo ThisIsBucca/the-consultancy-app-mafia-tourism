@@ -169,7 +169,7 @@ export default function HomePage() {
               {/* Modern Animated Carousel */}
               <Image
                 className="inset-0 w-full h-full object-cover z-0"
-                src="/hippo1.jpg"
+                src="/whaleshark-blue-3.jpg"
                 alt="cute bat in mafia"
                 fill
                 loading="lazy"

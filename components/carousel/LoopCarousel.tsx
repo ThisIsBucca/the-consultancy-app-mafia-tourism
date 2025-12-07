@@ -19,11 +19,11 @@ interface Slide {
 
 const slides: Slide[] = [
   { id: 1, src: '/lagoon1.jpg', alt: 'blue lagoon at mafia island' },
-  { id: 2, src: '/coconutBear.jpeg', alt: 'cocnut beer tasting  at mafia island' },
-  { id: 3, src: '/chole2.jpg', alt: 'chole at mafia island' },
-  { id: 4, src: '/village1.jpg', alt: 'village at mafia island' },
+  { id: 2, src: '/turtle1.jpg', alt: 'turtle  at mafia island' },
+  { id: 3, src: '/whaleface.jpg', alt: 'chole at mafia island' },
+  { id: 4, src: '/whaleshark-blue-3.jpg', alt: 'sandbank at mafia island' },
   { id: 5, src: '/coralreef2.jpg', alt: 'coralreef at mafia island' },
-  { id: 6, src: '/hippo2.jpg', alt: 'hippo at mafia island' },
+  { id: 6, src: '/coralreef1.jpg', alt: 'coralreef at mafia island' },
   { id: 7, src: '/bat1.jpg', alt: 'bat at mafia island' },
 ];
 

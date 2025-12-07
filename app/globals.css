@@ -4,11 +4,11 @@
 
 :root {
   /* Base colors from design */
-  --primary: 148 76% 39%; /* #0B6E4F */
-  --primary-light: 161 63% 36%; /* #12A67A */
-  --primary-dark: 149 79% 33%; /* #095C42 */
+  --primary: 201 100% 37%; /* #0B6E4F */
+  --primary-light: 201 63% 50%; /* #12A67A */
+  --primary-dark: 201 79% 33%; /* #095C42 */
 
-  --secondary: 29 100% 63%; /* #FF8C42 */
+  --secondary: 195 100% 63%; /* #FF8C42 */
   --secondary-light: 29 100% 71%; /* #FFA96E */
   --secondary-dark: 29 72% 55%; /* #E67A30 */
 
@@ -17,7 +17,8 @@
   --accent-dark: 46 65% 48%; /* #C9A82C */
 
   /* ShadCN UI variables */
-  --background: 0 0% 98%;
+  --background: 187 63% 92%;
+  /* --background: 0 0% 98%; */
   --foreground: 220 14% 20%; /* #333333 */
 
   --muted: 60 5% 96%;

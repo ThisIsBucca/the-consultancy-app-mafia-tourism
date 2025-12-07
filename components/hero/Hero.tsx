@@ -57,14 +57,14 @@ export default function Hero() {
       {/* Hero Content */}
       <div className="relative z-30 text-center max-w-5xl mx-auto px-4 py-20">
         <div className="mb-6 flex justify-center">
-          <Crown className="text-yellow-500 w-10 h-10 drop-shadow-md animate-bounce" />
+          <Crown className="text-foreground w-10 h-10 drop-shadow-md animate-bounce" />
         </div>
 
         {/* <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-[#1a3c2b] mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
           Mafia Island Authentic
         </h1> */}
 
-         <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-yellow-500 mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
+         <h1 className="font-montserrat font-bold text-5xl md:text-7xl text- mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
           Mafia Island Authentic
         </h1>
 
@@ -77,11 +77,11 @@ export default function Hero() {
               dive into coral beauty
             </span>
             ,{" "}
-            <span className="text-accent font-bold">
+            <span className="text-foreground font-bold">
               swim with whale sharks
             </span>
             , and{" "}
-            <span className="text-[#e6b800] font-bold">feel the culture</span>
+            <span className="text-foreground font-bold">feel the culture</span>
           </p>
         </div>
 
