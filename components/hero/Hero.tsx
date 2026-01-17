@@ -4,10 +4,42 @@ import Link from "next/link";
 import { Crown } from "lucide-react"; // <-- make sure lucide-react is installed
 import Image from 'next/image'
 import LoopCarousel from '@/components/carousel/LoopCarousel'
+import {gsap} from 'gsap'
+import {useRef, useEffect} from 'react'
+import {TextPlugin} from 'gsap/TextPlugin'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
+gsap.registerPlugin({TextPlugin, ScrollTrigger})
 
 export default function Hero() {
+
+   const titleRef = useRef(null);
+   const crownRef = useRef(null);
+   const heroRef = useRef(null);
+
+   useEffect(()=>{
+    gsap.to(
+      titleRef.current, {
+        scrollTrigger:{
+         trigger:crownRef.current,
+        },
+        duration: 2,
+        scale:1.2,
+        ease: "none"
+      }
+    )
+
+    // gsap.to(
+    //   crownRef.current, {
+    //     scale:1.5,
+    //     repeat:7,
+    //     duration: 2,
+    //     ease: 'circ.inOut'
+    //   }
+    // )
+   },[])
+
   return (
-    <div className="relative h-[100dvh] overflow-hidden flex items-center justify-center">
+    <div ref= {heroRef} className="relative h-[100dvh] overflow-hidden flex items-center justify-center">
       {/* Autoplay Background Video */}
       {/* <video
         className="absolute inset-0 w-full h-full object-cover z-0"
@@ -56,16 +88,16 @@ export default function Hero() {
 
       {/* Hero Content */}
       <div className="relative z-30 text-center max-w-5xl mx-auto px-4 py-20">
-        <div className="mb-6 flex justify-center">
-          <Crown className="text-foreground w-10 h-10 drop-shadow-md animate-bounce" />
-        </div>
+        {/* <div className="mb-6 flex justify-center">
+          <Crown ref={crownRef} className="text-foreground w-10 h-10 drop-shadow-md" />
+        </div> */}
 
         {/* <h1 className="font-montserrat font-bold text-5xl md:text-7xl text-[#1a3c2b] mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
           Mafia Island Authentic
         </h1> */}
 
-         <h1 className="font-montserrat font-bold text-5xl md:text-7xl text- mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
-          Mafia Island Authentic
+         <h1 ref = {titleRef} className="font-montserrat font-bold text-5xl md:text-7xl text-[#e6f7f1] text- mb-6 leading-tight drop-shadow-lg tracking-wider animate-fadein">
+          Mafia <span className="">Island</span> Authentic
         </h1>
 
         <div className="w-24 h-1 bg-accent mx-auto mb-6" />

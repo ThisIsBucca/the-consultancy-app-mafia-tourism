@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ChevronDown, Sparkles } from "lucide-react"
+import { ChevronDown, Sparkles, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
@@ -37,9 +37,9 @@ export function WhatWeOfferButton() {
               <DropdownMenuItem asChild className="mt-2 border-t pt-2">
                 <Link
                   href="/special-offer"
-                  className="cursor-pointer bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-md px-3 py-2 hover:from-green-800 hover:to-green-500 transition-all duration-200 flex items-center gap-2"
+                  className="cursor-pointer text-primary font-semibold rounded-md px-3 py-2  transition-all duration-200 flex items-center gap-2"
                 >
-                  <Sparkles className="h-4 w-4" />
+                  <Mail className="h-4 w-4" />
                   Special Request
                 </Link>
               </DropdownMenuItem>

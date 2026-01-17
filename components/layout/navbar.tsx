@@ -21,10 +21,10 @@ export const Navbar = () => {
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-around items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
-              <div className="bg-primary p-2 rounded-md w-fit h-fit flex items-center justify-center">
+              <div className="bg-primary  rounded-md w-fit h-fit flex items-center justify-center">
                 <Image
                   src="/icon.png"
                   alt="Mafia Island Authentic Logo"
@@ -34,10 +34,10 @@ export const Navbar = () => {
                   priority
                 />
               </div>
-
+{/* 
               <span className="font-montserrat font-bold text-xl text-primary">
                 Mafia Island Authentic
-              </span>
+              </span> */}
             </Link>
           </div>
 

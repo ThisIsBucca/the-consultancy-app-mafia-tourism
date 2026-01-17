@@ -27,7 +27,7 @@ export default function SpecialOfferPage() {
     email: "",
     phone: "",
     interest: "",
-    numberOfPeople: "",
+    numberOfPeople: 0,
     preferredDates: "",
     budget: "",
     additionalRequests: "",
@@ -44,22 +44,23 @@ export default function SpecialOfferPage() {
     setErrorMessage("")
 
     try {
-      const result = await sendSpecialOfferEmail(formData)
+      const result = await sendSpecialOfferEmail({...formData})
 
-      if (result.success) {
+      if (result?.success) {
+        
         setSubmitStatus("success")
         setFormData({
           name: "",
           email: "",
           phone: "",
           interest: "",
-          numberOfPeople: "",
+          numberOfPeople: 0,
           preferredDates: "",
           budget: "",
           additionalRequests: "",
         })
       } else {
-        throw new Error(result.error || "Failed to send email")
+        throw new Error("Failed to send email")
       }
     } catch (error: any) {
       console.error("Error submitting form:", error)
@@ -80,10 +81,10 @@ export default function SpecialOfferPage() {
       <main className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
         {/* Header */}
         <div className="mb-8 text-center sm:mb-12">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary">
-            <Sparkles className="h-5 w-5" />
+          {/* <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary">
+        
             <span className="text-sm font-medium">Custom Experience</span>
-          </div>
+          </div> */}
           <h1 className="mb-4 text-3xl font-bold text-balance sm:text-4xl lg:text-5xl">Request Your Special Offer</h1>
           <p className="mx-auto max-w-2xl text-base text-muted-foreground text-pretty sm:text-lg">
             Tell us what you're looking for, and we'll create a personalized experience just for you. Whether it's a
