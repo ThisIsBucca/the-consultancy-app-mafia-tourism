@@ -74,6 +74,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${montserrat.variable} ${playfair.variable}`}
     >
+      <head>
+        <meta name="google-site-verification" content="l6y4gqsfKY3cGNKFYxRmcptD_8BqyuukfdeJ1PDjMqA" />
+      </head>
       <body className={inter.className}>
         <Providers>
           <Navbar />
