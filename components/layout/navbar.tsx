@@ -28,8 +28,8 @@ export const Navbar = () => {
                 <Image
                   src="/icon.png"
                   alt="Mafia Island Authentic Logo"
-                  width={32}
-                  height={32}
+                  width={79}
+                  height={70}
                   className="object-contain"
                   priority
                 />
