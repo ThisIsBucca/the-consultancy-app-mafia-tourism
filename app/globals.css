@@ -69,6 +69,15 @@
   width: max-content;
 }
 
+@media (min-width: 1280px) {
+  .animate-marquee-left {
+    animation-duration: 45s;
+  }
+  .animate-marquee-right {
+    animation-duration: 45s;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }

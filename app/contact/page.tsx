@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import Image from "next/image"
 import PageCover from "@/components/ui/PageCover"
+import PageSEO from "@/components/ui/PageSEO"
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),

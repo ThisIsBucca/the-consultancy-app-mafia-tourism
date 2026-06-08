@@ -7,6 +7,8 @@ import { Navbar } from "../components/layout/navbar"
 import { Footer } from "../components/layout/footer"
 import { LoaderProvider } from "@/lib/loader-context"
 import Loader from "@/components/ui/Loader"
+import CookieConsent from "@/components/ui/CookieConsent"
+import WhatsAppFloat from "@/components/ui/WhatsAppFloat"
 
 // Fonts
 const inter = Inter({
@@ -78,11 +80,24 @@ export default function RootLayout({
     >
       <head>
         <meta name="google-site-verification" content="l6y4gqsfKY3cGNKFYxRmcptD_8BqyuukfdeJ1PDjMqA" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPMS5FG8SB" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-TPMS5FG8SB');
+            `,
+          }}
+        />
       </head>
       <body className={inter.className}>
         <Providers>
           <LoaderProvider>
             <Loader />
+            <CookieConsent />
+            <WhatsAppFloat />
             <Navbar />
             <main>{children}</main>
             <Footer />

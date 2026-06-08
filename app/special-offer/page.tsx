@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import PageSEO from "@/components/ui/PageSEO"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Sparkles,
@@ -25,6 +26,7 @@ import { sendSpecialOfferEmail } from "@/app/actions/send-special-offer"
 export default function SpecialOfferPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageSEO title="Special Offer" description="Have a special request or need a custom Mafia Island itinerary? Contact us and we'll tailor the perfect trip for you." />
       <PageCover
         src="/sunsetcruise2.jpg"
         alt="Sunset cruise"

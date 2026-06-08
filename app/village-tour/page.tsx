@@ -4,10 +4,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Clock, Palmtree, Home, Shirt, Factory } from "lucide-react"
 import PageCover from "@/components/ui/PageCover"
+import PageSEO from "@/components/ui/PageSEO"
 
 export default function VillageTourPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageSEO title="Village Tour" description="Experience authentic Swahili village life on Mafia Island — meet locals, visit markets, learn traditional crafts, and immerse yourself in island culture." />
       <PageCover
         src="/village1.jpg"
         alt="Coconut palms on Mafia Island"

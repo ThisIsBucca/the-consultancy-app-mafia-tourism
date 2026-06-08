@@ -5,12 +5,14 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { CheckCircle2, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import PageSEO from "@/components/ui/PageSEO"
 
 export default function ZanzibarPackagePage() {
   return (
     <div className="min-h-screen bg-background">
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
+          <PageSEO title="Mafia Island Package from Zanzibar" description="Book the Mafia Island adventure package from Zanzibar — includes flights, whale shark excursions, snorkeling, and accommodation. 3 days / 2 nights." />
           <Link
             href="/packages"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8"

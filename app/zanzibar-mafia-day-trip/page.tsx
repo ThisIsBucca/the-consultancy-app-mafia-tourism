@@ -4,10 +4,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Clock, Plane, Waves, Coffee, Bird, Calendar, Users, CreditCard, XCircle, Pencil } from "lucide-react"
 import PageCover from "@/components/ui/PageCover"
+import PageSEO from "@/components/ui/PageSEO"
 
 export default function ZanzibarMafiaDayTripPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageSEO title="Zanzibar to Mafia Day Trip" description="Take a day trip from Zanzibar to Mafia Island — flights, whale shark snorkeling, beach relaxation, and return. The ultimate island-hopping adventure." />
       <PageCover
         src="/chole1.jpg"
         alt="Chole Island waterfront"

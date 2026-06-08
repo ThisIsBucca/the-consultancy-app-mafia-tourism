@@ -4,10 +4,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import PageCover from "@/components/ui/PageCover"
+import PageSEO from "@/components/ui/PageSEO"
 
 export default function CharityToCommunityPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageSEO title="Charity to Community" description="Learn how Mafia Island Authentic gives back to the local community — supporting education, conservation, and sustainable development on Mafia Island." />
       <PageCover
         src="/village2.jpg"
         alt="Village path on Mafia Island"

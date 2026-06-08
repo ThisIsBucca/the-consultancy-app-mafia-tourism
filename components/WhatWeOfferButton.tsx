@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ChevronDown, Sparkles, Mail, Package, Waves, Tent, Compass, Ship, Leaf, Heart, Home } from "lucide-react"
+import { ChevronDown, Grid3X3, Mail, Package, Waves, Tent, Compass, Ship, Leaf, Heart, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -53,7 +53,7 @@ export function WhatWeOfferButton() {
           variant="ghost"
           className="gap-1.5 text-sm font-medium group"
         >
-          <Sparkles className="h-3.5 w-3.5 text-primary" />
+          <Grid3X3 className="h-3.5 w-3.5 text-primary" />
           What We Offer
           <ChevronDown className="h-3.5 w-3.5 opacity-50 group-data-[state=open]:rotate-180 transition-transform duration-200" />
         </Button>

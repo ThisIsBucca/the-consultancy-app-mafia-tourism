@@ -4,6 +4,7 @@ import { useTours } from "../../lib/queries"
 import { TourCard } from "../../components/tours/tour-card"
 import { useState, useEffect } from "react"
 import PageCover from "@/components/ui/PageCover"
+import PageSEO from "@/components/ui/PageSEO"
 
 const categories = ["all", "Premium", "Seasonal", "Historical", "Cultural", "Nature", "Leisure", "Sandbank"]
 
@@ -79,6 +80,7 @@ export default function ToursPage() {
 
   return (
     <>
+      <PageSEO title="Tours & Activities" description="Browse all Mafia Island tours and activities — whale shark swimming, snorkeling, village tours, sandbank excursions, and more. Book your adventure." />
       <PageCover
         src="/whaleshark-blue-3.jpg"
         alt="Whale shark in blue ocean"

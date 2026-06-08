@@ -1,6 +1,17 @@
-
+import type { Metadata } from "next"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import PageCover from "@/components/ui/PageCover"
+
+export const metadata: Metadata = {
+  title: "Marine Conservation | Mafia Island Authentic",
+  description:
+    "Discover our marine conservation efforts on Mafia Island — protecting whale sharks, coral reefs, and sea turtles through eco-tourism and community partnerships.",
+  openGraph: {
+    title: "Marine Conservation | Mafia Island Authentic",
+    description:
+      "Discover our marine conservation efforts on Mafia Island — protecting whale sharks, coral reefs, and sea turtles.",
+  },
+}
 
 export default function ConservationPage() {
   return (

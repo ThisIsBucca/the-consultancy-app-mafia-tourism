@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { X, ChevronLeft, ChevronRight, ChevronDown, Camera, Maximize2, Heart, Share2 } from "lucide-react"
+import PageSEO from "@/components/ui/PageSEO"
 
 const publicImages = [
   "beach1.jpg", "lagoon2.jpg", "coralreef1.jpg", "hippo1.jpg", "coralreef3.jpg",
@@ -187,6 +188,7 @@ export default function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <PageSEO title="Gallery" description="Browse the Mafia Island photo gallery — stunning images of whale sharks, coral reefs, beaches, sunsets, and island life in Tanzania." image="/lagoon2.jpg" />
       <section className="relative h-[50vh] sm:h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
           src="/lagoon1.jpg"

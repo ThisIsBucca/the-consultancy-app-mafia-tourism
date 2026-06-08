@@ -6,7 +6,7 @@ import { Star, Quote } from "lucide-react"
 function TestimonialCard({ testimonial, index }: { testimonial: any; index: number }) {
   return (
     <div
-      className="group relative bg-card rounded-2xl p-5 sm:p-6 shadow-sm border border-border hover:shadow-md transition-all duration-300 hover:-translate-y-1 min-w-[280px] sm:min-w-[320px] max-w-[320px] sm:max-w-[360px] shrink-0 animate-fade-up opacity-0 [animation-fill-mode:forwards]"
+      className="group relative bg-card rounded-2xl p-5 sm:p-6 shadow-sm border border-border hover:shadow-md transition-all duration-300 hover:-translate-y-1 min-w-[280px] sm:min-w-[320px] xl:min-w-[380px] w-[320px] sm:w-[360px] xl:w-[420px] shrink-0 animate-fade-up opacity-0 [animation-fill-mode:forwards]"
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <Quote className="absolute top-4 right-4 h-8 w-8 text-primary/5 group-hover:text-primary/10 transition-colors duration-300" />
@@ -63,13 +63,13 @@ export const TestimonialsSection = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-5 sm:gap-6">
-        <div className="flex gap-4 sm:gap-5 animate-marquee-left hover:[animation-play-state:paused]">
+      <div className="flex flex-col gap-5 sm:gap-6 xl:gap-8">
+        <div className="flex gap-4 sm:gap-5 xl:gap-7 animate-marquee-left hover:[animation-play-state:paused]">
           {[...row1, ...row1].map((t, i) => (
             <TestimonialCard key={`${t.id}-${i}`} testimonial={t} index={i} />
           ))}
         </div>
-        <div className="flex gap-4 sm:gap-5 animate-marquee-right hover:[animation-play-state:paused]">
+        <div className="flex gap-4 sm:gap-5 xl:gap-7 animate-marquee-right hover:[animation-play-state:paused]">
           {[...row2, ...row2].map((t, i) => (
             <TestimonialCard key={`${t.id}-${i}`} testimonial={t} index={i + row1.length} />
           ))}

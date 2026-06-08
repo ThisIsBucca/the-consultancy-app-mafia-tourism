@@ -5,6 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { accommodations, type Accommodation } from "../../data/accommodation-data"
 import PageCover from "@/components/ui/PageCover"
+import WhatsAppModal from "@/components/ui/WhatsAppModal"
+import PageSEO from "@/components/ui/PageSEO"
 
 const typeStyles: Record<string, string> = {
   budget: "bg-emerald-50 text-emerald-700",
@@ -21,7 +23,7 @@ const typeLabels: Record<string, string> = {
   camping: "Camping",
 }
 
-function AccommodationCard({ item }: { item: Accommodation }) {
+function AccommodationCard({ item, onBook }: { item: Accommodation; onBook: (item: Accommodation) => void }) {
   return (
     <div className="group bg-white rounded-xl border border-border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden hover:-translate-y-1">
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -53,7 +55,12 @@ function AccommodationCard({ item }: { item: Accommodation }) {
             </span>
           ))}
         </div>
-        
+        <button
+          onClick={() => onBook(item)}
+          className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold bg-primary text-primary-foreground py-2.5 rounded-xl hover:bg-primary-dark active:opacity-90 transition-all"
+        >
+          Book Now
+        </button>
       </div>
     </div>
   )
@@ -61,11 +68,13 @@ function AccommodationCard({ item }: { item: Accommodation }) {
 
 export default function AccommodationPage() {
   const [filter, setFilter] = useState<string>("all")
+  const [modalItem, setModalItem] = useState<Accommodation | null>(null)
 
   const filtered = filter === "all" ? accommodations : accommodations.filter((a) => a.type === filter)
 
   return (
     <>
+      <PageSEO title="Accommodation" description="Find your perfect stay on Mafia Island — from budget bungalows to luxury eco-lodges. Book your island accommodation today." />
       <PageCover
         src="/lagoon2.jpg"
         alt="Mafia Island lagoon"
@@ -98,7 +107,7 @@ export default function AccommodationPage() {
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((item) => (
-                <AccommodationCard key={item.id} item={item} />
+                <AccommodationCard key={item.id} item={item} onBook={setModalItem} />
               ))}
             </div>
           ) : (
@@ -178,7 +187,11 @@ export default function AccommodationPage() {
         </div>
       </section>
 
-      
+      <WhatsAppModal
+        open={!!modalItem}
+        onClose={() => setModalItem(null)}
+        bgImage={modalItem?.image}
+      />
     </>
   )
 }

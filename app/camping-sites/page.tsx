@@ -2,10 +2,12 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import PageCover from "@/components/ui/PageCover"
+import PageSEO from "@/components/ui/PageSEO"
 
 export default function CampingSitesPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageSEO title="Camping Sites" description="Experience beach camping on Mafia Island — fall asleep to the sound of waves under a starlit sky. Tents provided or bring your own." />
       <PageCover
         src="/beach1.jpg"
         alt="Pristine beach on Mafia Island"

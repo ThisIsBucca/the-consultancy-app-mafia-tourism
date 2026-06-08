@@ -2,10 +2,12 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import PageCover from "@/components/ui/PageCover"
+import PageSEO from "@/components/ui/PageSEO"
 
 export default function SwimmingWithWhalesharkPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageSEO title="Swimming with Whale Sharks" description="Swim alongside gentle giant whale sharks on Mafia Island — the best place in Tanzania for ethical whale shark encounters. Season: October to March." />
       <PageCover
         src="/whaleshark-blue-1.jpg"
         alt="Whale shark swimming in the ocean"

@@ -1,5 +1,17 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "About Us | Mafia Island Authentic",
+  description:
+    "Learn about Mafia Island Authentic — our mission to share the beauty of Mafia Island through sustainable tourism, cultural respect, and unforgettable experiences.",
+  openGraph: {
+    title: "About Us | Mafia Island Authentic",
+    description:
+      "Learn about Mafia Island Authentic — our mission to share the beauty of Mafia Island through sustainable tourism.",
+  },
+}
 
 const values = [
   {
