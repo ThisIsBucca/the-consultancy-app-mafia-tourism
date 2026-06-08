@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   },
 }
 
+const highlights = [
+  { icon: Eye, label: "Whale Shark Encounters" },
+  { icon: Waves, label: "Coral Reef Snorkeling" },
+  { icon: Compass, label: "Island Exploration" },
+  { icon: Ship, label: "Cultural Immersion" },
+]
+
 export default function PackagesPage() {
   return (
     <div className="min-h-screen bg-background">
