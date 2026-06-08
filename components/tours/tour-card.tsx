@@ -6,7 +6,7 @@ interface TourCardProps {
   tour: {
     id: string
     title: string
-    description: string
+    description?: string
     price?: string | number
     duration?: string
     location?: string

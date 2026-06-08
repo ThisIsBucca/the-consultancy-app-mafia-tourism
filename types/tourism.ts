@@ -10,7 +10,7 @@ export interface Activity {
   size?: string
   period?: string
   bestTime?: string
-  description: string
+  description?: string
   highlights?: string[]
   note?: string
   category: string
@@ -38,11 +38,14 @@ export interface Sandbank {
   highlights: string[]
   category: string
   emoji: string
-  name: string
+  name?: string
   price: string
   slug: string
-  features: string
+  features?: string
   image: string
+  duration?: string
+  location?: string
+  description?: string
 }
 
 export interface Package {

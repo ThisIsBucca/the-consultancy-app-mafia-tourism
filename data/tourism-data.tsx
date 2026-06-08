@@ -188,7 +188,7 @@ export const culturalActivities: CulturalActivity[] = [
   },
 ]
 
-export const sandbanks: Activity[] = [
+export const sandbanks: Sandbank[] = [
   // {
   //   id: "mange-sandbank",
   //   title: "Mange Sandbank",
