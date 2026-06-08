@@ -1,22 +1,21 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import PageCover from "@/components/ui/PageCover"
 
 export default function CampingSitesPage() {
   return (
     <div className="min-h-screen bg-background">
-      
+      <PageCover
+        src="/beach1.jpg"
+        alt="Pristine beach on Mafia Island"
+        label="Camping"
+        title="Beach Camping Experience"
+        subtitle="Experience the Magic of Sleeping by the Ocean"
+      />
 
       <main className="container mx-auto px-4 py-6 md:py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-balance">
-            Beach Camping Experience – Mafia Island
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 text-pretty">
-            Experience the Magic of Sleeping by the Ocean
-          </p>
 
           <Card className="mb-6 md:mb-8">
             <CardHeader>
@@ -32,31 +31,7 @@ export default function CampingSitesPage() {
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg md:text-xl">With Provided Tent</CardTitle>
-                <CardDescription className="text-2xl md:text-3xl font-bold text-foreground">
-                  $20 <span className="text-sm font-normal text-muted-foreground">per person</span>
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm md:text-base text-muted-foreground">Complete camping setup with tent provided</p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg md:text-xl">With Your Own Tent</CardTitle>
-                <CardDescription className="text-2xl md:text-3xl font-bold text-foreground">
-                  $15 <span className="text-sm font-normal text-muted-foreground">per person</span>
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm md:text-base text-muted-foreground">Bring your own tent and save</p>
-              </CardContent>
-            </Card>
-          </div>
+          
 
           <Card className="mb-6 md:mb-8">
             <CardHeader>
@@ -161,21 +136,6 @@ export default function CampingSitesPage() {
             </CardContent>
           </Card>
 
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-             <Button
-              onClick={() => {
-                const defaultMessage =
-                  "Hello Chinanda! I'm interested in Beach camping . Please provide more details.";
-                const url = `https://wa.me/255785696021?text=${encodeURIComponent(
-                  defaultMessage
-                )}`;
-                window.open(url, "_blank");
-              }}
-              className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/80 transition-colors"
-            >
-            Book Your Camping Experience
-            </Button>
-          </div>
         </div>
       </main>
     </div>

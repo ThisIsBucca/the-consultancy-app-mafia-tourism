@@ -1,30 +1,22 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import PageCover from "@/components/ui/PageCover"
 
 export default function SwimmingWithWhalesharkPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageCover
+        src="/whaleshark-blue-1.jpg"
+        alt="Whale shark swimming in the ocean"
+        label="Swimming with Whale Sharks"
+        title="Whale Shark Swimming & Snorkeling"
+        subtitle="Swim alongside the gentle giants of the ocean in the pristine waters of Mafia Island"
+      />
+
       <main className="container mx-auto px-4 py-6 md:py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-balance">
-            ✨ Whale Shark Swimming & Snorkeling
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 md:mb-8">
-            <Card>
-              <CardHeader className="pb-3">
-                <CardDescription className="text-xs">Price</CardDescription>
-                <CardTitle className="text-xl md:text-2xl">$70</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  per person
-                </p>
-              </CardContent>
-            </Card>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 md:mb-8">
             <Card>
               <CardHeader className="pb-3">
                 <CardDescription className="text-xs">Duration</CardDescription>
@@ -228,20 +220,6 @@ export default function SwimmingWithWhalesharkPage() {
                 </ul>
               </CardContent>
             </Card>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-            <Button
-              onClick={() => {
-                const defaultMessage =
-                  "Hello Chinanda! I'm interested in Whale Shark Swimming & Snorkeling . Please provide more details.";
-                const url = `https://wa.me/255785696021?text=${encodeURIComponent(
-                  defaultMessage
-                )}`;
-                window.open(url, "_blank");
-              }}
-              className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/80 transition-colors"
-            > Book now </Button>
           </div>
         </div>
       </main>

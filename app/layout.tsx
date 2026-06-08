@@ -5,6 +5,8 @@ import "./globals.css"
 import { Providers } from "./providers"
 import { Navbar } from "../components/layout/navbar"
 import { Footer } from "../components/layout/footer"
+import { LoaderProvider } from "@/lib/loader-context"
+import Loader from "@/components/ui/Loader"
 
 // Fonts
 const inter = Inter({
@@ -79,9 +81,12 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <LoaderProvider>
+            <Loader />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </LoaderProvider>
         </Providers>
       </body>
     </html>

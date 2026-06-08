@@ -16,10 +16,7 @@ export const CulturalActivityCard = ({ activity }: CulturalActivityCardProps) =>
       />
     </div>
     <div className="p-4 sm:p-6">
-      <div className="flex justify-between items-start mb-2 sm:mb-4">
-        <h3 className="text-lg sm:text-xl font-bold text-gray-800">{activity.name}</h3>
-        <span className="text-xl sm:text-2xl font-bold text-green-600">{activity.price}</span>
-      </div>
+      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-4">{activity.name}</h3>
       <p className="text-sm sm:text-base text-gray-600">{activity.description}</p>
     </div>
   </div>

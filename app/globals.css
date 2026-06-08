@@ -2,24 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes gradientMove {
+  0% { filter: blur(0px) opacity(1); }
+  50% { filter: blur(8px) opacity(0.9); }
+  100% { filter: blur(0px) opacity(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-gradient {
+  background: linear-gradient(115deg, rgba(0,212,255,0.18) 0%, rgba(255,255,255,0.12) 50%, rgba(255,180,80,0.18) 100%);
+  animation: gradientMove 8s ease-in-out infinite alternate;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 8s linear infinite;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 30s linear infinite;
+  width: max-content;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite;
+  width: max-content;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
-  /* Base colors from design */
-  --primary: 201 100% 37%; /* #0B6E4F */
-  --primary-light: 201 63% 50%; /* #12A67A */
-  --primary-dark: 201 79% 33%; /* #095C42 */
+  --primary: 187 100% 32%;
+  --primary-light: 187 70% 45%;
+  --primary-dark: 187 100% 22%;
 
-  --secondary: 195 100% 63%; /* #FF8C42 */
-  --secondary-light: 29 100% 71%; /* #FFA96E */
-  --secondary-dark: 29 72% 55%; /* #E67A30 */
+  --secondary: 29 100% 55%;
+  --secondary-light: 29 100% 71%;
+  --secondary-dark: 29 72% 45%;
 
-  --accent: 46 70% 57%; /* #E2C044 */
-  --accent-light: 46 84% 70%; /* #F0D676 */
-  --accent-dark: 46 65% 48%; /* #C9A82C */
+  --accent: 42 90% 55%;
+  --accent-light: 42 100% 68%;
+  --accent-dark: 42 85% 45%;
 
-  /* ShadCN UI variables */
-  --background: 187 63% 92%;
-  /* --background: 0 0% 98%; */
-  --foreground: 220 14% 20%; /* #333333 */
+  --background: 187 40% 97%;
+  --foreground: 220 14% 20%;
 
   --muted: 60 5% 96%;
   --muted-foreground: 25 5% 45%;
@@ -46,7 +122,6 @@
 
   --radius: 0.5rem;
 
-  /* Font variables */
   --font-inter: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --font-montserrat: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -93,88 +168,8 @@
     font-family: var(--font-inter);
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     @apply font-bold;
     font-family: var(--font-montserrat);
-  }
-
-  h1 {
-    @apply text-4xl md:text-6xl leading-tight;
-  }
-
-  h2 {
-    @apply text-3xl md:text-4xl;
-  }
-
-  h3 {
-    @apply text-2xl;
-  }
-
-  p {
-    @apply leading-relaxed;
-  }
-}
-
-@layer components {
-  .container-custom {
-    @apply container mx-auto max-w-6xl px-4;
-  }
-
-  .section-title {
-    @apply text-center;
-  }
-
-  .section-title span {
-    @apply text-primary font-medium;
-  }
-
-  .section-title h2 {
-    @apply font-bold text-3xl md:text-4xl mt-3 mb-6;
-    font-family: var(--font-montserrat);
-  }
-
-  .section-divider {
-    @apply w-20 h-1 bg-accent mx-auto;
-  }
-
-  .btn-primary {
-    @apply bg-primary hover:bg-primary/90 text-primary-foreground;
-  }
-
-  .btn-secondary {
-    @apply bg-secondary hover:bg-secondary/90 text-secondary-foreground;
-  }
-
-  .btn-accent {
-    @apply bg-accent hover:bg-accent/90 text-accent-foreground;
-  }
-
-  .font-inter {
-    font-family: var(--font-inter);
-  }
-
-  .font-montserrat {
-    font-family: var(--font-montserrat);
-  }
-
-  .font-playfair {
-    font-family: var(--font-playfair);
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 }

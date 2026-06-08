@@ -2,23 +2,23 @@
 
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { MapPin, Clock, Palmtree, Home, Shirt, Factory, DollarSign } from "lucide-react"
+import { MapPin, Clock, Palmtree, Home, Shirt, Factory } from "lucide-react"
+import PageCover from "@/components/ui/PageCover"
 
 export default function VillageTourPage() {
   return (
     <div className="min-h-screen bg-background">
-     
+      <PageCover
+        src="/village1.jpg"
+        alt="Coconut palms on Mafia Island"
+        label="Village Tour"
+        title="Dongo Village Tour"
+        subtitle="Immerse in Mafia Island's Culture & Traditions"
+      />
 
       <main className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8 md:mb-12">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-balance">
-              Dongo Village Tour – Mafia Island
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-4">
-              Immerse in Mafia Island's Culture & Traditions
-            </p>
             <div className="flex items-center gap-2 text-sm md:text-base text-muted-foreground">
               <MapPin className="h-4 w-4" />
               <span>Just 3 km from Mafia Airport</span>
@@ -163,24 +163,6 @@ export default function VillageTourPage() {
               </CardContent>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                  <CardTitle className="text-lg md:text-xl">Pricing</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm md:text-base text-muted-foreground">Single:</span>
-                  <span className="text-xl md:text-2xl font-bold">$40</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm md:text-base text-muted-foreground">Shared (3+):</span>
-                  <span className="text-xl md:text-2xl font-bold">$30</span>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           <Card className="mb-6 md:mb-8">
@@ -239,21 +221,6 @@ export default function VillageTourPage() {
               </ul>
             </CardContent>
           </Card>
-
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                          <Button
-                            onClick={() => {
-                              const defaultMessage =
-                                "Hello Chinanda! I'm interested in Dongo Village Tour. Please provide more details.";
-                              const url = `https://wa.me/255785696021?text=${encodeURIComponent(
-                                defaultMessage
-                              )}`;
-                              window.open(url, "_blank");
-                            }}
-                            className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/80 transition-colors"
-                          > Book Your Dongo Village Tour Today </Button>
-                        </div>
-
 
         </div>
       </main>

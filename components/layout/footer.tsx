@@ -1,114 +1,81 @@
-import Link from "next/link";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Facebook,
-  Instagram,
-  Twitter,
-} from "lucide-react";
-import Image from "next/image";
+import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react"
+import Image from "next/image"
+
+const socialLinks = [
+  { icon: Facebook, href: "https://facebook.com/mafiaislandauthentic", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com/mafiaislandauthentic", label: "Instagram" },
+  { icon: Twitter, href: "https://twitter.com/mafiaislandauthentic", label: "Twitter" },
+]
+
+const contactItems = [
+  { icon: Phone, value: "+255 785 696 021" },
+  { icon: Mail, value: "mafiaislandauthentic@gmail.com" },
+  { icon: MapPin, value: "Kilindoni, Mafia Island, Tanzania" },
+]
 
 export const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="bg-primary p-2 rounded-md w-fit h-fit flex items-center justify-center">
-                <Image
-                  src="/icon.png"
-                  alt="Mafia Island Authentic Logo"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <span className="font-bold text-xl">Mafia Island Authentic</span>
+    <footer className="relative overflow-hidden text-white">
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(/lagoon1.jpg)" }} />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-900/75 to-gray-800/80" />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-6">
+        <div className="flex flex-col items-center text-center gap-8">
+          <div className="flex items-center gap-3">
+            <div className="relative w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden ring-1 ring-white/20">
+              <Image
+                src="/icon.png"
+                alt="Mafia Island Authentic"
+                fill
+                sizes="44px"
+                className="object-cover"
+              />
             </div>
-            <p className="text-gray-300 mb-4">
-              Discover Tanzania's hidden paradise with pristine coral reefs,
-              whale sharks, and authentic cultural experiences in the Indian
-              Ocean.
-            </p>
-            <div className="flex space-x-4">
-              <Facebook className="h-6 w-6 text-primary hover:text-primary cursor-pointer" />
-              <Instagram className="h-6 w-6 text-primary hover:text-pink-400 cursor-pointer" />
-              <Twitter className="h-6 w-6 text-primary hover:text-primary cursor-pointer" />
+            <div>
+              <p className="font-montserrat font-bold text-lg leading-tight text-white">
+                Mafia Island
+              </p>
+              <p className="text-[10px] tracking-widest uppercase text-white/50">
+                Authentic
+              </p>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/tours" className="text-gray-300 hover:text-white">
-                  Tours & Activities
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-white">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/gallery"
-                  className="text-gray-300 hover:text-white"
-                >
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-300 hover:text-white"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-lg">
+            Discover Tanzania&apos;s hidden paradise with pristine coral reefs, whale sharks, 
+            and authentic cultural experiences in the Indian Ocean.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
+            {contactItems.map((item, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <item.icon className="h-4 w-4 text-primary shrink-0" />
+                <span>{item.value}</span>
+              </div>
+            ))}
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <span className="text-gray-300">+255 785 696 021</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <span className="text-gray-300">+255 776 986 840</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <span className="text-gray-300">
-                  mafiaislandauthentic@gmail.com
-                </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span className="text-gray-300">
-                  Kilindoni, Mafia Island, Tanzania
-                </span>
-              </div>
-            </div>
+          <div className="flex gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 ring-1 ring-white/10 hover:ring-primary/50"
+              >
+                <social.icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} Mafia Island Authentic. All rights
-            reserved.
+        <div className="border-t border-white/10 mt-10 pt-6 text-center">
+          <p className="text-gray-500 text-xs">
+            &copy; {new Date().getFullYear()} Mafia Island Authentic
           </p>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}

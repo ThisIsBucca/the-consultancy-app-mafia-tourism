@@ -20,27 +20,6 @@ export const PackagesSection = ({ packages }: PackagesSectionProps) => (
       ))}
     </div>
 
-    {/* Pricing Summary */}
-    <div className="bg-gray-50 rounded-xl p-4 sm:p-6 lg:p-8">
-      <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Pricing Overview</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
-        <div className="text-center">
-          <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600 mb-1 sm:mb-2">$10-25</div>
-          <p className="text-xs sm:text-sm text-gray-600">Budget Activities</p>
-        </div>
-        <div className="text-center">
-          <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-600 mb-1 sm:mb-2">$25-50</div>
-          <p className="text-xs sm:text-sm text-gray-600">Standard Excursions</p>
-        </div>
-        <div className="text-center">
-          <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-purple-600 mb-1 sm:mb-2">$50-70</div>
-          <p className="text-xs sm:text-sm text-gray-600">Premium Experiences</p>
-        </div>
-        <div className="text-center">
-          <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-600 mb-1 sm:mb-2">$70+</div>
-          <p className="text-xs sm:text-sm text-gray-600">Specialist Activities</p>
-        </div>
-      </div>
-    </div>
+    
   </div>
 )

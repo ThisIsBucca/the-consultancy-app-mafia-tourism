@@ -1,14 +1,20 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import PageCover from "@/components/ui/PageCover"
 
 export default function ConservationPage() {
   return (
     <div className="min-h-screen bg-background">
-
+      <PageCover
+        src="/turtle1.jpg"
+        alt="Sea turtle on the beach"
+        label="Conservation"
+        title="Protecting Mafia Island's Ecosystem"
+        subtitle="Our commitment to sustainable tourism and marine conservation"
+      />
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-6">🌱 Conservation</h1>
 
           <Card className="mb-8">
             <CardHeader>

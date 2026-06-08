@@ -98,10 +98,8 @@ export const useTour = (slug: string) => {
 export const useTestimonials = () => {
   return useQuery({
     queryKey: ["testimonials"],
-    queryFn: async () => {
-      // Always return fallback data in demo mode
-      return fallbackTestimonials
-    },
+    queryFn: () => fallbackTestimonials,
+    placeholderData: fallbackTestimonials,
   })
 }
 

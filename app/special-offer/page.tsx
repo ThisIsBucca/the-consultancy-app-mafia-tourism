@@ -19,9 +19,25 @@ import {
   AlertCircle,
 } from "lucide-react"
 import { useState } from "react"
+import PageCover from "@/components/ui/PageCover"
 import { sendSpecialOfferEmail } from "@/app/actions/send-special-offer"
 
 export default function SpecialOfferPage() {
+  return (
+    <div className="min-h-screen bg-background">
+      <PageCover
+        src="/sunsetcruise2.jpg"
+        alt="Sunset cruise"
+        label="Special Offer"
+        title="Customize Your Perfect Trip"
+        subtitle="Tell us what you're looking for and we'll create a personalized Mafia Island experience just for you"
+      />
+      <SpecialOfferForm />
+    </div>
+  )
+}
+
+function SpecialOfferForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -76,8 +92,6 @@ export default function SpecialOfferPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-
       <main className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
         {/* Header */}
         <div className="mb-8 text-center sm:mb-12">
@@ -336,6 +350,5 @@ export default function SpecialOfferPage() {
           </div>
         </div>
       </main>
-    </div>
   )
 }

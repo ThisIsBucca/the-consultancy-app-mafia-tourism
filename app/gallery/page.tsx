@@ -1,267 +1,347 @@
-"use client";
+"use client"
+
 import Image from "next/image"
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useCallback, useRef } from "react"
+import { X, ChevronLeft, ChevronRight, ChevronDown, Camera, Maximize2, Heart, Share2 } from "lucide-react"
+
+const publicImages = [
+  "beach1.jpg", "lagoon2.jpg", "coralreef1.jpg", "hippo1.jpg", "coralreef3.jpg",
+  "coralreefsvibe2.jpg", "sunsetcruise1.jpg", "cutecoralreef.jpg", "kasa.jpg",
+  "lagoon1.jpg", "sunsetcruise2.jpg", "sandbank3.jpg", "whaleshark-blue-1.jpg",
+  "juani.jpg", "chole2.jpg", "whaleshark-blue-3.jpg", "chole1.jpg",
+  "whaleshark-greenblue-1.jpg", "hippopond1.jpg", "chole3.jpg", "kua3.jpg",
+  "whalesharkvibe1.jpg", "hippo2.jpg", "bat2.jpg", "kua1.jpg", "bat1.jpg",
+  "sandbank1.jpg", "mkumbi1.jpg", "sunsetCruise4.jpg", "turtle1.jpg",
+  "mkumbi2.jpg", "turtle2.jpg", "village1.jpg", "village2.jpg",
+]
+
+const descriptions: Record<string, string> = {
+  "beach1.jpg": "A pristine white sand beach with turquoise waters.",
+  "lagoon2.jpg": "A clear blue lagoon surrounded by dense green mangroves.",
+  "coralreef1.jpg": "Vibrant coral reef teeming with tropical fish.",
+  "hippo1.jpg": "Hippo partially submerged in a calm pond.",
+  "coralreef3.jpg": "Panoramic view of coral gardens beneath crystal water.",
+  "coralreefsvibe2.jpg": "Coral reefs glowing in the sunlight.",
+  "sunsetcruise1.jpg": "A dhow sailing at sunset on the Indian Ocean.",
+  "cutecoralreef.jpg": "Small fish darting among cute coral formations.",
+  "kasa.jpg": "Sea turtle gliding above coral reefs.",
+  "lagoon1.jpg": "Aerial view of a tranquil blue-green lagoon.",
+  "sunsetcruise2.jpg": "Tourists enjoying a sunset cruise.",
+  "sandbank3.jpg": "Fresh fish skewered and cooking over an open fire.",
+  "whaleshark-blue-1.jpg": "Whale shark swimming gracefully in the blue ocean.",
+  "juani.jpg": "Juani Island with lush vegetation and tall palm trees.",
+  "chole2.jpg": "Jackfruits growing on a tree trunk at Chole Island.",
+  "whaleshark-blue-3.jpg": "A majestic whale shark surrounded by tiny fish.",
+  "chole1.jpg": "Calm waterfront scene at Chole Island.",
+  "hippopond1.jpg": "Lush wetland area with patches of green vegetation.",
+  "chole3.jpg": "A quiet historic spot surrounded by nature.",
+  "kua3.jpg": "Stone staircase leading up between weathered walls.",
+  "whalesharkvibe1.jpg": "A playful whale shark enjoying the tropical vibe.",
+  "hippo2.jpg": "Two hippos partially submerged in a calm pond.",
+  "bat2.jpg": "A group of bats hanging upside down on a branch.",
+  "kua1.jpg": "Ancient stone ruins surrounded by dense green forest.",
+  "mkumbi1.jpg": "The iconic red-and-white striped lighthouse.",
+  "mkumbi2.jpg": "Lighthouse surrounded by green trees.",
+  "bat1.jpg": "A bat hanging upside down on a tree branch.",
+  "turtle1.jpg": "A tiny baby sea turtle crawling on the sandy beach.",
+  "turtle2.jpg": "A baby sea turtle moving across sandy ground.",
+  "village1.jpg": "Tall coconut palm trees leaning over a lush landscape.",
+  "village2.jpg": "A peaceful dirt path through a grove of coconut palms.",
+  "sandbank1.jpg": "Narrow sandbar extending into the water with a boat docked.",
+}
+
+function getCategory(filename: string): string {
+  if (filename.includes("whale")) return "Whale Sharks"
+  if (filename.includes("coral")) return "Coral Reefs"
+  if (filename.includes("beach")) return "Beaches"
+  if (filename.includes("lagoon")) return "Lagoons"
+  if (filename.includes("sunset")) return "Sunset Cruises"
+  if (filename.includes("juani") || filename.includes("chole")) return "Islands"
+  if (filename.includes("bat") || filename.includes("hippo")) return "Wildlife"
+  if (filename.includes("kasa") || filename.includes("turtle")) return "Turtles"
+  if (filename.includes("sandbank")) return "Sandbanks"
+  if (filename.includes("mkumbi")) return "Lighthouse"
+  if (filename.includes("kua")) return "Kua Ruins"
+  if (filename.includes("village")) return "Village Life"
+  return "Other"
+}
+
+const images = publicImages.map((filename) => ({
+  src: `/${filename}`,
+  alt: filename.replace(/[-_]/g, " ").replace(/\.[a-zA-Z]+$/, ""),
+  description: descriptions[filename] || "A beautiful scene from Mafia Island.",
+  category: getCategory(filename),
+}))
+
+const categories = [
+  "All", "Whale Sharks", "Coral Reefs", "Beaches", "Lagoons",
+  "Islands", "Turtles", "Wildlife", "Sunset Cruises",
+  "Lighthouse", "Kua Ruins", "Village Life",
+]
+
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [revealed, setRevealed] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || revealed) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setRevealed(true); observer.unobserve(el) } },
+      { threshold: 0.1 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [revealed])
+  return { ref, revealed }
+}
+
+function GridImage({ image, index, onClick }: { image: typeof images[0]; index: number; onClick: () => void }) {
+  const { ref, revealed } = useScrollReveal()
+
+  const aspectClasses = [
+    "aspect-[4/3]", "aspect-[3/4]", "aspect-[4/3]", "aspect-square",
+    "aspect-[3/4]", "aspect-[4/3]", "aspect-square", "aspect-[4/3]",
+    "aspect-[3/4]", "aspect-[4/3]", "aspect-square", "aspect-[4/3]",
+    "aspect-[3/4]", "aspect-square", "aspect-[4/3]", "aspect-[3/4]",
+    "aspect-[4/3]", "aspect-square", "aspect-[3/4]", "aspect-[4/3]",
+    "aspect-square", "aspect-[4/3]", "aspect-[3/4]", "aspect-[4/3]",
+  ]
+
+  return (
+    <div
+      ref={ref}
+      className={`group relative overflow-hidden rounded-2xl bg-gray-100 cursor-pointer transition-all duration-700 ${
+        revealed ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
+      } ${aspectClasses[index % aspectClasses.length]}`}
+      style={{ transitionDelay: `${Math.min(index * 50, 500)}ms` }}
+      onClick={onClick}
+    >
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover group-hover:scale-110 transition-transform duration-700"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+
+      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-75 group-hover:scale-100">
+        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+          <Maximize2 className="h-3.5 w-3.5 text-white" />
+        </div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+        <span className="inline-block text-[10px] font-semibold tracking-widest uppercase text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-full mb-1.5">
+          {image.category}
+        </span>
+        <p className="text-xs text-white/80 leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
+          {image.description}
+        </p>
+      </div>
+    </div>
+  )
+}
 
 export default function GalleryPage() {
-  // Dynamically get all images in public except placeholders
-  const publicImages = [
-    "beach1.jpg", "lagoon2.jpg", "coralreef1.jpg", "hippo1.jpg", "coralreef3.jpg", "coralreefsvibe2.jpg", "sunsetcruise1.jpg","cutecoralreef.jpg", "kasa.jpg", "lagoon1.jpg", "sunsetcruise2.jpg", "sandbank3.jpg", "whaleshark-blue-1.jpg", "juani.jpg", "chole2.jpg", "whaleshark-blue-3.jpg", "chole1.jpg", "whaleshark-greenblue-1.jpg", "hippopond1.jpg", "chole3.jpg",  "kua3.jpg", "whalesharkvibe1.jpg", "hippo2.jpg","bat2.jpg", "kua1.jpg","bat1.jpg","sandbank1.jpg","mkumbi1.jpg","sunsetCruise4.jpg","turtle1.jpg","mkumbi2.jpg","turtle2.jpg","village1.jpg","village2.jpg"
-  ];
-
-  // Unique descriptions for each image
-  const imageDescriptions: Record<string, string> = {
-    "beach1.jpg": "A pristine white sand beach with turquoise waters, perfect for relaxation.",
-    "lagoon2.jpg": "A clear blue lagoon surrounded by dense green mangrove trees.",
-    "coralreef1.jpg": "A vibrant coral reef teeming with tropical fish and marine life.",
-    "hippo1.jpg": "hippo's head partially submerged in pond.",
-    "coralreef3.jpg": "A panoramic view of coral gardens beneath crystal clear water.",
-    "coralreefsvibe2.jpg": "Coral reefs glowing in the sunlight, full of life and color.",
-    "sunsetcruise1.jpg": "A dhow boat sailing at sunset, capturing the island's culture.",
-    "cutecoralreef.jpg": "A playful scene of small fish darting among cute coral formations.",
-    "kasa.jpg": "Sea turtle lgliding underwater above coral reefs.",
-    "lagoon1.jpg": "Aerial view of a tranquil lagoon with blue-green water.",
-    "sunsetcruise2.jpg": "Tourists enjoying a sunset cruise on Mafia Island.",
-    "sandbank3.jpg": "three fish skewered on sticks, cooking them.",
-    "whaleshark-blue-1.jpg": "Whale shark swimming gracefully in the blue ocean.",
-    "juani.jpg": "A small rocky juani island with lush green vegetation and tall palm trees.",
-    "chole2.jpg": "Several jackfruits growing on a tree trunk.",
-    "whaleshark-blue-3.jpg": "A majestic whale shark surrounded by tiny fish.",
-    "chole1.jpg": "A calm waterfront scene viewed from under a boat roof at chole island.",
-    "hippopond1.jpg": "Lush wetland area with patches of green vegetation.",
-    "chole3.jpg": "A quiet historic spot surrounded by nature.",
-    "kua3.jpg": "A narrow stone staircase leading up between rough,weathered stone walls.",
-    "whalesharkvibe1.jpg": "A playful whale shark enjoying the tropical vibe.",
-    "hippo2.jpg": "two hippos partially submerged in calm, reflective pond.",
-    "bat2.jpg": "A group of bats hanging upside down on tree branch.",
-    "kua1.jpg": "Ancient stone ruins surrounded by dense green forest.",
-    "mkumbi1.jpg": "A tall lighthouse with red and horizontal stripes standing next to a single story building.",
-    "mkumbi2.jpg": "A tall lighthouse surrounded by green trees.",
-    "bat1.jpg": "A bat hanging upside down on tree branch.",
-    "turtle1.jpg": "A tiny baby sea turtle crawling on sandy beach.",
-    "turtle2.jpg": "A tiny baby sea turtle moving across sandy ground.",
-    "village1.jpg": "A lush green landscape with tall, slender coconut palm trees leaning slightly.",
-    "village2.jpg": "A peceful dirt path winding through a dense grove of all coconut palm trees.",
-    "sandbank1.jpg": "narrow sandbar extending into the water, with boat docked near the shore.",
-
-  };
-
-  const images = publicImages.map((filename) => ({
-    src: `/${filename}`,
-    alt: filename.replace(/[-_]/g, ' ').replace(/\.[a-zA-Z]+$/, ''),
-    description: imageDescriptions[filename] || "A beautiful scene from Mafia Island.",
-    category: filename.includes('whale') ? 'whale shark'
-      : filename.includes('coralreef') || filename.includes('coral') ? 'Coral Reefs'
-      : filename.includes('beach') ? 'Beaches'
-      : filename.includes('lagoon') ? 'lagoon'
-      : filename.includes('sunsetcruise') ? 'sunset cruise'
-      : filename.includes('sunsetCruise') ? 'sunset cruise'
-      : filename.includes('hero') ? 'Nature'
-      : filename.includes('juani') ? 'juani island'
-      : filename.includes('bat') ? 'flying foxes'
-      : filename.includes('kasa') ? 'turtle'
-      : filename.includes('turtle') ? 'turtle'
-      : filename.includes('hippo') ? 'hippos'
-      : filename.includes('hippopond') ? 'hippo pond'
-      : filename.includes('sandbank') ? 'sandbank'
-      : filename.includes('face') ? 'Marine Life'
-      : filename.includes('mkumbi') ? 'lighthouse-ras mkumbi'
-      : filename.includes('kua') ? 'kua ruins'
-      : filename.includes('chole') ? 'chole island'
-      : filename.includes('village') ? 'village tour '
-      : 'Other',
-  }));
-
-  const categories = ["All", "whale shark", "village tour", "Coral Reefs", "turtle", "Beaches","sandbank", "lighthouse-ras mkumbi","flying foxes","hippos", "hippo pond", "kua ruins", "juani island", "chole island", "lagoon", "sunset cruise"]
   const [selectedCategory, setSelectedCategory] = useState("All")
-  const [zoomedImage, setZoomedImage] = useState<null | typeof images[0]>(null);
-  const [lastTap, setLastTap] = useState<number>(0);
-  const [isTouch, setIsTouch] = useState(false)
-
-  // Detect touch device
-  useEffect(() => {
-    setIsTouch("ontouchstart" in window)
-  }, [])
-
-  // Handle double tap for mobile
-  function handleImageClick(image: typeof images[0]) {
-    const now = Date.now();
-    if (now - lastTap < 400) {
-      setZoomedImage(image);
-    } else {
-      setLastTap(now);
-    }
-  }
-
-  // Handle image click/double tap
-  const handleImageClickDesktop = (image: typeof images[0]) => {
-    setZoomedImage(image)
-  }
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [liked, setLiked] = useState(false)
 
   const filteredImages = selectedCategory === "All"
     ? images
     : images.filter((img) => img.category === selectedCategory)
 
+  const goToPrev = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev - 1 + filteredImages.length) % filteredImages.length : null
+    )
+  }, [filteredImages.length])
+
+  const goToNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev + 1) % filteredImages.length : null
+    )
+  }, [filteredImages.length])
+
+  useEffect(() => {
+    if (lightboxIndex === null) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null)
+      if (e.key === "ArrowLeft") goToPrev()
+      if (e.key === "ArrowRight") goToNext()
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [lightboxIndex, goToPrev, goToNext])
+
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => { setLoaded(true) }, [])
+
+  const filteredRef = useRef<HTMLDivElement>(null)
+  const scrollToGallery = (cat: string) => {
+    setSelectedCategory(cat)
+    setTimeout(() => filteredRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100)
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Hero Section */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center">
-            <span className="text-primary font-medium text-lg tracking-wide uppercase mb-4 block">GALLERY</span>
-            <h1 className="font-montserrat font-bold text-5xl md:text-6xl text-gray-900 mb-6">
+    <div className="min-h-screen bg-white">
+      <section className="relative h-[50vh] sm:h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <Image
+          src="/lagoon1.jpg"
+          alt="Mafia Island"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+
+        {loaded && (
+          <div className="relative z-10 text-center px-4 animate-fade-up">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white/90 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+              <Camera className="h-3.5 w-3.5" />
+              Gallery
+            </span>
+            <h1 className="font-montserrat font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-3 sm:mb-5 leading-tight tracking-tight">
               Experience Mafia Island
             </h1>
-            <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-inter leading-relaxed">
+            <p className="text-sm sm:text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
               Immerse yourself in the beauty of Mafia Island through our collection of stunning photographs
             </p>
           </div>
-        </div>
-      </div>
+        )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 animate-float">
+          <ChevronDown className="h-5 w-5 text-white/50" />
+        </div>
+      </section>
+
+      <section ref={filteredRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
           {categories.map((category) => (
             <button
               key={category}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-sm hover:shadow-md border border-gray-200 ${selectedCategory === category ? "bg-primary text-white" : "bg-white text-gray-700 hover:bg-primary hover:text-white"}`}
-              onClick={() => setSelectedCategory(category)}
-              style={{ minWidth: "120px" }}
+              onClick={() => scrollToGallery(category)}
+              className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                selectedCategory === category
+                  ? "text-white"
+                  : "text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200"
+              }`}
             >
-              <span className="whitespace-nowrap">{category}</span>
+              {selectedCategory === category && (
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-primary-dark" />
+              )}
+              <span className="relative z-10">{category}</span>
             </button>
           ))}
         </div>
 
-        {/* Check if images exist */}
         {filteredImages.length > 0 ? (
-          <>
-            {/* Image Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredImages.map((image, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white"
-                  onClick={() => {
-                    if (!isTouch) {
-                      setZoomedImage(image);
-                    }
-                  }}
-                  onTouchEnd={() => handleImageClick(image)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <div className="relative h-64 md:h-80">
-                    <Image
-                      src={image.src || "/placeholder.svg"}
-                      alt={image.alt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                      <span className="bg-primary px-3 py-1 rounded-full text-sm font-medium mb-2 inline-block">
-                        {image.category}
-                      </span>
-                      <p className="text-sm font-inter">{image.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+            {filteredImages.map((image, index) => (
+              <GridImage
+                key={`${image.src}-${index}`}
+                image={image}
+                index={index}
+                onClick={() => setLightboxIndex(index)}
+              />
+            ))}
+          </div>
         ) : (
-          /* No Images State */
           <div className="text-center py-20">
-            <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-montserrat text-2xl font-bold text-gray-900 mb-4">No Gallery Images Available</h3>
-              <p className="text-gray-600 font-inter">Please check back later for new images</p>
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Camera className="h-8 w-8 text-gray-300" />
             </div>
+            <h3 className="font-montserrat text-lg font-bold text-gray-900 mb-1">
+              No images in this category
+            </h3>
+            <p className="text-sm text-gray-500">Try selecting a different category</p>
           </div>
         )}
 
-        {/* Call to Action */}
-        <div className="text-center mt-20">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-200">
-            <h2 className="font-montserrat text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Ready to Create Your Own Memories?
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto font-inter leading-relaxed">
-              Join us for an unforgettable adventure and capture your own stunning moments in paradise
-            </p>
-            <a
-              href="/tours"
-              className="btn-primary px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-block"
-            >
-              Book Your Adventure
-            </a>
+        <div className="text-center mt-16 sm:mt-20">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8 sm:p-14">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
+            <div className="relative z-10">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase text-primary/60 mb-3 font-montserrat">
+                Start Your Journey
+              </span>
+              <h2 className="font-montserrat text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                Ready to Create Your Own Memories?
+              </h2>
+              <p className="text-sm sm:text-base text-white/60 mb-8 max-w-xl mx-auto leading-relaxed">
+                Join us for an unforgettable adventure and capture your own stunning moments in paradise
+              </p>
+              <a
+                href="/tours"
+                className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3 rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5"
+              >
+                Book Your Adventure
+                <ChevronRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* WhatsApp Float Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <a
-          href="https://wa.me/255776986840"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl transform hover:scale-110"
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
+          onClick={() => setLightboxIndex(null)}
         >
-          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
-          </svg>
-        </a>
-      </div>
-
-      <AnimatePresence>
-        {!isTouch && zoomedImage && (
-          <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setZoomedImage(null)}
-            style={{ cursor: "zoom-out" }}
-          >
-            <motion.div
-              className="relative w-full h-full flex items-center justify-center"
-              initial={{ scale: 0.95, y: 0 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              onClick={e => e.stopPropagation()}
+          <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="absolute top-4 sm:top-6 right-4 sm:right-6 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
+              onClick={() => setLightboxIndex(null)}
+              aria-label="Close"
             >
+              <X className="h-5 w-5" />
+            </button>
+
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-10 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/60 text-xs font-medium font-montserrat">
+              {lightboxIndex + 1} / {filteredImages.length}
+            </div>
+
+            <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-center max-w-lg w-full px-4">
+              <p className="text-sm text-white/60 leading-relaxed">
+                {filteredImages[lightboxIndex].description}
+              </p>
+              <span className="inline-block text-[10px] font-semibold tracking-widest uppercase text-white/30 mt-1.5 font-montserrat">
+                {filteredImages[lightboxIndex].category}
+              </span>
+            </div>
+
+            <button
+              className="absolute left-2 sm:left-6 z-10 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
+              onClick={goToPrev}
+              aria-label="Previous"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            <button
+              className="absolute right-2 sm:right-6 z-10 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
+              onClick={goToNext}
+              aria-label="Next"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+
+            <div className="relative w-full h-full max-w-6xl max-h-[80vh] mx-4 sm:mx-20 my-20">
               <Image
-                src={zoomedImage.src}
-                alt="Zoomed image"
+                key={lightboxIndex}
+                src={filteredImages[lightboxIndex].src}
+                alt={filteredImages[lightboxIndex].alt}
                 fill
-                className="object-contain w-full h-full rounded-2xl"
+                className="object-contain"
                 priority
               />
-              <button
-                className="absolute top-6 right-8 bg-black/60 text-white rounded-full p-3 shadow-lg hover:bg-primary transition-colors duration-200"
-                onClick={() => setZoomedImage(null)}
-                aria-label="Close modal"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

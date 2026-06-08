@@ -2,33 +2,29 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Clock, Plane, Waves, Coffee, Bird, Calendar, Users, CreditCard, XCircle, Pencil, DollarSign } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Clock, Plane, Waves, Coffee, Bird, Calendar, Users, CreditCard, XCircle, Pencil } from "lucide-react"
+import PageCover from "@/components/ui/PageCover"
 
 export default function ZanzibarMafiaDayTripPage() {
   return (
     <div className="min-h-screen bg-background">
-   
+      <PageCover
+        src="/chole1.jpg"
+        alt="Chole Island waterfront"
+        label="Day Trip"
+        title="Zanzibar to Mafia Island"
+        subtitle="A full-day guided adventure from Zanzibar to Mafia Island featuring whale shark encounters and unique wildlife experiences"
+      />
 
       <main className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <div className="mb-6 md:mb-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-balance">
-              Day Trip – Zanzibar to Mafia Island
-            </h1>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              A full-day guided adventure from Zanzibar to Mafia Island featuring whale shark encounters and unique
-              wildlife experiences.
-            </p>
             <Badge variant="secondary" className="text-sm">
               <Calendar className="w-4 h-4 mr-1" />
               Best Season: August – March
             </Badge>
 
-            <Badge variant="secondary" className="text-sm mt-4 lg:ml-4">
-              <DollarSign className="w-4 h-4 mr-1" />
-             PRICE : $550 per person
-            </Badge>
+
           </div> 
 
           <Card className="mb-6 md:mb-8">
@@ -301,22 +297,7 @@ export default function ZanzibarMafiaDayTripPage() {
           </Card>
 
            
-           
-           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-4">
-            <Button
-              onClick={() => {
-                const defaultMessage =
-                  "Hello Chinanda! I'm interested in Mafia day trip . Please provide more details.";
-                const url = `https://wa.me/255785696021?text=${encodeURIComponent(
-                  defaultMessage
-                )}`;
-                window.open(url, "_blank");
-              }}
-              className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/80 transition-colors"
-            > Book now </Button>
-          </div>
-
-        </div>
+         </div>
       </main>
     </div>
   )

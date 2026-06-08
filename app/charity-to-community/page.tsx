@@ -3,16 +3,21 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import PageCover from "@/components/ui/PageCover"
 
 export default function CharityToCommunityPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PageCover
+        src="/village2.jpg"
+        alt="Village path on Mafia Island"
+        label="Charity & Community"
+        title="Supporting the Mafia Island Community"
+        subtitle="Committed to giving back to the local community through education, healthcare, and sustainable development"
+      />
 
       <main className="container mx-auto px-4 py-6 md:py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-balance">
-            Supporting the Mafia Island Community
-          </h1>
 
           <Card className="mb-6 md:mb-8">
             <CardHeader>

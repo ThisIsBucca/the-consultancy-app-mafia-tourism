@@ -1,78 +1,55 @@
+"use client"
 
-import Image from 'next/image';
-import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react';
-import {  Autoplay } from 'swiper/modules';
-// import { EffectFade  } from 'swiper/modules';
+import { useState, useEffect } from 'react'
+import { useLoader } from '@/lib/loader-context'
 
-// import { Navigation, Pagination, Lazy, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-// import 'swiper/css/effect-fade';
+const slides = [
+  { id: 1, src: '/lagoon1.jpg', alt: 'blue lagoon' },
+  // { id: 2, src: '/turtle1.jpg', alt: 'turtle' },
+  // { id: 3, src: '/whaleface.jpg', alt: 'whale face' },
+  { id: 4, src: '/whaleshark-blue-3.jpg', alt: 'whale shark' },
+  // { id: 5, src: '/coralreef2.jpg', alt: 'coral reef' },
+  // { id: 6, src: '/coralreef1.jpg', alt: 'coral reef' },
+  { id: 7, src: '/bat1.jpg', alt: 'bat' },
+]
 
+export default function LoopCarousel() {
+  const [current, setCurrent] = useState(0)
+  const { registerImage, onImageLoaded } = useLoader()
 
-interface Slide {
-  id: number;
-  src: string;
-  alt: string;
-}
+  useEffect(() => {
+    const heroImages = slides.slice(0, 2)
+    heroImages.forEach((slide) => {
+      registerImage(slide.src)
+      const img = new Image()
+      img.onload = img.onerror = () => onImageLoaded(slide.src)
+      img.src = slide.src
+    })
+  }, [registerImage, onImageLoaded])
 
-const slides: Slide[] = [
-  { id: 1, src: '/lagoon1.jpg', alt: 'blue lagoon at mafia island' },
-  { id: 2, src: '/turtle1.jpg', alt: 'turtle  at mafia island' },
-  { id: 3, src: '/whaleface.jpg', alt: 'chole at mafia island' },
-  { id: 4, src: '/whaleshark-blue-3.jpg', alt: 'sandbank at mafia island' },
-  { id: 5, src: '/coralreef2.jpg', alt: 'coralreef at mafia island' },
-  { id: 6, src: '/coralreef1.jpg', alt: 'coralreef at mafia island' },
-  { id: 7, src: '/bat1.jpg', alt: 'bat at mafia island' },
-];
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length)
+    }, 5000)
+    return () => clearInterval(id)
+  }, [])
 
-const swiperSettings: SwiperProps = {
-  modules: [ Autoplay],
-  loop: true,
-  autoplay: { delay: 6000 },
-  spaceBetween:0,
-  breakpoints: {
-    640: {slidesPerView: 1},
-    768: {slidesPerView: 2},
-    1024: {slidesPerView: 2},
-  },
-  speed:800,
-  // effect:'fade',//cube, fad, flip etc
-  className : " h-full w-full",
-  
-};
-
-// const swiperSettings: SwiperProps = {
-//   modules: [Navigation, Pagination, Lazy, Autoplay],
-//   navigation: true,
-//   pagination: { clickable: true },
-//   lazy: true,
-//   loop: true,
-//   autoplay: { delay: 4000 },
-//   breakpoints: {
-//     640: { slidesPerView: 1 },
-//     768: { slidesPerView: 2 },
-//     1024: { slidesPerView: 3 },
-//   },
-//   className: 'w-full h-[60vh]',
-// };
-
-export default function SwiperCarousel() {
   return (
-    <Swiper {...swiperSettings}>
-      {slides.map(({ id, src, alt }) => (
-        <SwiperSlide key={id} className='realative w-auto h-full'>
-          <Image
-            src={src}
-            alt={alt}
-            loading={ (src === "/lagoon1.jpg") ? 'eager'  : 'lazy'}
-            fill
-            className="object-cover"
-            priority ={ (src === "/lagoon1.jpg") ? true : undefined}
-          />
-        </SwiperSlide>
+    <div className="w-full h-full relative" style={{ minHeight: 'inherit' }}>
+      {slides.map((s, i) => (
+        <div
+          key={s.id}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${s.src})`,
+            opacity: i === current ? 1 : 0,
+            transition: 'opacity 0.7s ease-in-out',
+            zIndex: i === current ? 1 : 0,
+          }}
+        />
       ))}
-    </Swiper>
-  );
+      {/* Subtle overlay to improve text readability */}
+      <div className="absolute inset-0 bg-black/20 z-[2]" />
+    </div>
+  )
 }

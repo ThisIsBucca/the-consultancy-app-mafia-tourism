@@ -1,14 +1,14 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Clock, MapPin, Star } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 
 interface TourCardProps {
   tour: {
     id: string
     title: string
     description: string
-    price: number
-    duration: string
+    price?: string | number
+    duration?: string
     location?: string
     category: string
     image_url?: string
@@ -17,90 +17,63 @@ interface TourCardProps {
   }
 }
 
+const categoryStyles: Record<string, string> = {
+  Premium: "bg-primary/10 text-primary",
+  Seasonal: "bg-sky-50 text-sky-700",
+  Historical: "bg-stone-50 text-stone-700",
+  Cultural: "bg-rose-50 text-rose-700",
+  Nature: "bg-emerald-50 text-emerald-700",
+  Leisure: "bg-violet-50 text-violet-700",
+  Sandbank: "bg-cyan-50 text-cyan-700",
+}
+
 export const TourCard = ({ tour }: TourCardProps) => {
-  // Generate a steady rating based on tour id
-  const getRating = (id: string) => {
-    // Simple hash to float between 4.5 and 5.0
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) {
-      hash += id.charCodeAt(i);
-    }
-    return (4.5 + (hash % 50) / 100).toFixed(1);
-  }
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Marine":
-        return "bg-primary text-primary-foreground"
-      case "Cultural":
-        return "bg-secondary text-secondary-foreground"
-      case "Adventure":
-        return "bg-accent text-accent-foreground"
-      case "Relaxation":
-        return "bg-primary-light text-white"
-      default:
-        return "bg-primary text-primary-foreground"
-    }
-  }
+  const catStyle = categoryStyles[tour.category] || "bg-gray-100 text-gray-700"
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-primary border-2  border-gray-100">
+    <div className="group bg-white rounded-xl border border-gray-200 hover:border-primary/30 transition-all duration-300 overflow-hidden">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={tour.image || "/placeholder.svg"}
           alt={tour.title}
           fill
-          className="object-cover transition-transform duration-300 hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute top-4 right-4">
-          <span className={`px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(tour.category)}`}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        <div className="absolute top-3 left-3">
+          <span className={`px-2.5 py-1 rounded-md text-xs font-medium ${catStyle}`}>
             {tour.category}
           </span>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
       </div>
 
-      <div className="p-6">
-        <h3 className="font-montserrat text-xl font-bold text-gray-900 mb-3 line-clamp-2">{tour.title}</h3>
-        <p className="text-gray-600 mb-4 line-clamp-3 font-inter leading-relaxed">{tour.description}</p>
+      <div className="p-5">
+        <h3 className="text-lg font-bold text-gray-900 font-montserrat mb-2 line-clamp-1">
+          {tour.title}
+        </h3>
+        <p className="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-4">
+          {tour.description}
+        </p>
 
-        <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
-          <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            <span>{tour.duration}</span>
-          </div>
-          {tour.location && (
-            <div className="flex items-center gap-1">
-              <MapPin className="h-4 w-4" />
-              <span className="truncate">{tour.location}</span>
-            </div>
+        {tour.duration && (
+          <p className="text-xs text-gray-400 mb-4">
+            {tour.duration}
+            {tour.location && <> &middot; {tour.location}</>}
+          </p>
+        )}
+
+        <div className="flex items-center justify-end pt-4 border-t border-gray-100">
+          {tour.slug ? (
+            <Link
+              href={`/tours/${tour.slug}`}
+              className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+            >
+              View Details
+              <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          ) : (
+            <span className="text-sm text-gray-400">Unavailable</span>
           )}
-          <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 text-accent fill-current" />
-            <span>{getRating(tour.id)}</span>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-primary font-montserrat">
-            {tour.price}
-            <span className="text-sm text-gray-500 font-normal font-inter"> per person</span>
-          </div>
-            {tour.slug ? (
-              <Link
-                href={`/tours/${tour.slug}`}
-                className="btn-primary px-6 py-2 rounded-lg hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
-              >
-                View Details
-              </Link>
-            ) : (
-              <button
-                className="btn-primary px-6 py-2 rounded-lg opacity-50 cursor-not-allowed"
-                disabled
-                title="Tour details unavailable"
-              >
-                View Details
-              </button>
-            )}
         </div>
       </div>
     </div>
